@@ -30,7 +30,8 @@ class Theater(models.Model):
 	name = models.CharField(max_length=24, null=True)
 	description = models.CharField(max_length=100, null=True)
 	located_city = models.ForeignKey(City, null=True,on_delete=models.CASCADE)
-    # seatsCount = models.IntegerField(default=0)
+	seats_count = models.IntegerField(default=0)
+	service_charges = models.IntegerField(default=0)	# add up to movie charges in total bill.
 
 	def __str__(self):
 		return self.name
@@ -38,16 +39,18 @@ class Theater(models.Model):
 
 class Movie(models.Model):
 	name = models.CharField(max_length=24, null=True, default="")
-	shown_in_theater = models.ManyToManyField(Theater)
 	markup_price = models.IntegerField(default=0)
 	duration_in_min = models.CharField(max_length=24, null=True, default="")
 	genre = models.CharField(max_length=24, null=True, default="")
 	release_date = models.CharField(max_length=24, null=True, default="")
 	language_avail = models.CharField(max_length=24, null=True, default="")
+	# shown_in_theater = models.ManyToManyField(Theater)
 
 	def __str__(self):
 		return self.name
 
+
+# as of now we consider, each theater has single Auditorim/Hall/Screen and multiple shows in one day.
 
 class Shows(models.Model):
 	name = models.CharField(max_length=24, null=True)
@@ -55,7 +58,7 @@ class Shows(models.Model):
 	movie_shown = models.ForeignKey(Movie, null=True, on_delete= models.SET_NULL)
 
 	def __str__(self):
-		return self.name
+		return self.name + " Show at " + self.theater.name
 
 	class Meta:
          db_table = 'Shows'
@@ -99,7 +102,6 @@ class Booking(models.Model):
     on_date = models.CharField(max_length=24, null=True)
     by_customer = models.OneToOneField(Customer, null=True, on_delete=models.SET_NULL)
     booked_show = models.OneToOneField(Shows, null=True, on_delete=models.SET_NULL)
-    booked_at_theater = models.ForeignKey(Theater, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
