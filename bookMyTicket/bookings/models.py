@@ -37,13 +37,13 @@ class Theater(models.Model):
 
 
 class Movie(models.Model):
-	name = models.CharField(max_length=24, null=True)
+	name = models.CharField(max_length=24, null=True, default="")
 	shown_in_theater = models.ManyToManyField(Theater)
 	markup_price = models.IntegerField(default=0)
-	duration_in_min = models.CharField(max_length=24, null=True)
-	genre = models.CharField(max_length=24, null=True)
-	release_date = models.CharField(max_length=24, null=True)
-	language_avail = models.CharField(max_length=24, null=True)
+	duration_in_min = models.CharField(max_length=24, null=True, default="")
+	genre = models.CharField(max_length=24, null=True, default="")
+	release_date = models.CharField(max_length=24, null=True, default="")
+	language_avail = models.CharField(max_length=24, null=True, default="")
 
 	def __str__(self):
 		return self.name
@@ -61,6 +61,17 @@ class Shows(models.Model):
          db_table = 'Shows'
 	
 
+class ShowsFromTheater(models.Model):
+	name = models.CharField(max_length=24, null=True)
+	movie_shown = models.ForeignKey(Movie, null=True, on_delete= models.SET_NULL)
+
+	def __str__(self):
+		return self.name
+
+	class Meta:
+         db_table = 'ShowsFromTheater'
+	
+
 class Seats(models.Model):
 	BOOKING_STATUS = (
 		('BOOKED', 'BOOKED'),
@@ -69,13 +80,14 @@ class Seats(models.Model):
 		('NOT_AVAILABLE','NOT_AVAILABLE')
 	)
 
-	seq_code = models.CharField(max_length=24, null=True)
+	seat_code = models.CharField(max_length=24, null=True)
+	present_in_theater = models.ForeignKey(Theater, null=True, on_delete= models.SET_NULL)
 	booking_status = models.CharField(max_length=24, null=True, choices=BOOKING_STATUS, default=BOOKING_STATUS[1][0])
 	booked_by_cust = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
 	avail_in_shows = models.ManyToManyField(Shows)
-
+	
 	def __str__(self):
-		return self.name	
+		return self.seat_code	
 
 	class Meta:
 		db_table = 'Seats'
@@ -87,6 +99,7 @@ class Booking(models.Model):
     on_date = models.CharField(max_length=24, null=True)
     by_customer = models.OneToOneField(Customer, null=True, on_delete=models.SET_NULL)
     booked_show = models.OneToOneField(Shows, null=True, on_delete=models.SET_NULL)
+    booked_at_theater = models.ForeignKey(Theater, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
