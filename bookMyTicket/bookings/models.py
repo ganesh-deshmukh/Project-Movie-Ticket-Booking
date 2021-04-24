@@ -14,12 +14,16 @@ class Customer(models.Model):
 	def __str__(self):
 		return self.name
 
+
 class City(models.Model):
 	name = models.CharField(max_length=20, null=True)
 	pincode = models.CharField(max_length=10, null=True)
 
 	def __str__(self):
 		return self.name
+
+	class Meta:
+    	 db_table = 'Cities'
 
 
 class Theater(models.Model):
@@ -53,6 +57,9 @@ class Shows(models.Model):
 	def __str__(self):
 		return self.name
 
+	class Meta:
+         db_table = 'Shows'
+	
 
 class Seats(models.Model):
 	BOOKING_STATUS = (
@@ -68,7 +75,10 @@ class Seats(models.Model):
 	avail_in_shows = models.ManyToManyField(Shows)
 
 	def __str__(self):
-			return self.name	
+		return self.name	
+
+	class Meta:
+		db_table = 'Seats'
 
 
 class Booking(models.Model):
