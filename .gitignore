@@ -1,1 +1,2 @@
-./bookMyTicket/booking/migrations/*
+# ./bookMyTicket/booking/migrations/*
+./bookMyTicket/db.sqlite3
