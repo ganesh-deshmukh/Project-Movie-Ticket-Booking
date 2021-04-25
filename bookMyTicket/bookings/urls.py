@@ -14,12 +14,16 @@ urlpatterns = [
     path('theater_admin/list/seats/<str:show_id>/', views.Admin_List_Seats),
     path('theater_admin/seats/details/<str:seat_id>/', views.Admin_Seat_Details),
 
-    # 1.2 for Updating values
+    # 1.2 for Creating values
     path('theater_admin/create/city', formViews.Create_City_Form),
     path('theater_admin/create/movie', formViews.Create_Movie_Form),
     path('theater_admin/create/theater', formViews.Create_Theater_Form),
     path('theater_admin/create/shows/<str:theater_id>/', formViews.Create_Shows_Form),
     path('theater_admin/create/seats/<str:show_id>/', formViews.Create_Seats_Form),
+
+    # 1.3 for Updating values
+
+    path('theater_admin/update/city/<str:city_id>/', formViews.Update_City_Form, name="update_city"),
 
     # 2. Customer Routes
     path('', views.Cust_Home_Book_Now),

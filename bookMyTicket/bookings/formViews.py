@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from .formModels import City_Form
 
-# Model Form Views for Updation
+# 1. Model Form Views for City
 
 def Create_City_Form(request):
     form = City_Form()
@@ -14,6 +14,20 @@ def Create_City_Form(request):
             return redirect('/theater_admin/list/city')
     return render(request, 'bookings/ModelForms/Create_City_Form.html', {'form': form})
 
+
+def Update_City_Form(request, city_id):
+    city_rec = City.objects.get(id=city_id)
+
+    form = City_Form(instance=city_rec)
+    if request.method == 'POST':
+        form = City_Form(request.POST, instance=city_rec)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/city')
+    return render(request, 'bookings/ModelForms/Create_City_Form.html', {'form': form})
+
+
+# 2. Model Form Views for Movie
 
 def Create_Movie_Form(request):
     movies = Movie.objects.all()

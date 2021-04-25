@@ -23,8 +23,8 @@
 
                 <tr>
                     <th scope="row">{{city.id}}</th>
-                    <td><a href="/">{{city.name}}</a></td>
-                    <td><button class="btn btn-success">Edit</button></td>
+                    <td>{{city.name}}</td>
+                    <td><a href="{% url 'update_city' city.id %}" class="btn btn-success">Edit</a></td>
                     <td><button class="btn btn-danger">Delete</button></td>
                 </tr>
 
