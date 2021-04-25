@@ -24,10 +24,16 @@ def Admin_Add_Theater(request):
     return render(request, 'bookings/Admin_Add_Theater.html', {'theaters': theaters})
 
 
-def Admin_Add_Show_With_Seats(request, theater_id):
+def Admin_Add_Shows(request, theater_id):
     shows_in_given_theater = Shows.objects.filter(theater=theater_id)
     theater_rec = Theater.objects.get(id=theater_id)
-    return render(request, 'bookings/Admin_Add_Show_With_Seats.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
+    return render(request, 'bookings/Admin_Add_Shows.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
+
+
+def Admin_Add_Seats(request, theater_id):
+    shows_in_given_theater = Shows.objects.filter(theater=theater_id)
+    theater_rec = Theater.objects.get(id=theater_id)
+    return render(request, 'bookings/Admin_Add_Seats.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
 
 
 # Customer Views
@@ -48,8 +54,12 @@ def Cust_Select_Theater(request):
     return render(request, 'bookings/Cust_Select_Theater.html')
 
 
-def Cust_Select_Show_With_Seat(request):
-    return render(request, 'bookings/Cust_Select_Show_With_Seat.html')
+def Cust_Select_Show(request):
+    return render(request, 'bookings/Cust_Select_Show.html')
+
+
+def Cust_Select_Seat(request):
+    return render(request, 'bookings/Cust_Select_Seat.html')
 
 
 def Cust_Booking_Payment(request):

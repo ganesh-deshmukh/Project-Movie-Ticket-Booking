@@ -1,0 +1,41 @@
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container text-center">
+    <div class="my-2">
+        <h3 class="">Available Shows at {{theater_name}}</h3>
+        <button class="btn btn-success">Add new Show</button>
+
+    </div>
+    <div class="">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Show ID</th>
+                    <th scope="col">Show Name</th>
+                    <th scope="col">Edit Show</th>
+                    <th scope="col">Delete Show</th>
+                    <th scope="col">Add/Edit Seats</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for show in shows %}
+
+                <tr>
+                    <th scope="row">{{show.id}}</th>
+                    <td>{{show.name}}</a></td>
+                    <td><button class="btn btn-success">Edit Show</button></td>
+                    <td><button class="btn btn-danger">Delete Show</button></td>
+                    <td>
+                        <a class="btn btn-warning" href="/theater_admin/add/shows/{{show.id}}">Add/Edit Seats</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
