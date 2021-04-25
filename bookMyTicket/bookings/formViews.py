@@ -1,12 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
-
+from .formModels import City_Form
 
 # Model Form Views for Updation
 
 def Create_City_Form(request):
-    return render(request, 'bookings/ModelForms/Create_City_Form.html')
+    form = City_Form()
+    if request.method == 'POST':
+        form = City_Form(request.POST)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/city')
+    return render(request, 'bookings/ModelForms/Create_City_Form.html', {'form': form})
 
 
 def Create_Movie_Form(request):
