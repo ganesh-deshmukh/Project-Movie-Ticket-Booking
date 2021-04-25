@@ -5,6 +5,7 @@ from .formModels import City_Form
 
 # 1. Model Form Views for City
 
+
 def Create_City_Form(request):
     form = City_Form()
     if request.method == 'POST':
@@ -25,6 +26,16 @@ def Update_City_Form(request, city_id):
             form.save()
             return redirect('/theater_admin/list/city')
     return render(request, 'bookings/ModelForms/Create_City_Form.html', {'form': form})
+
+
+def Delete_City_Form(request, city_id):
+    city = City.objects.get(id=city_id)
+
+    if request.method == 'POST' and city:
+        city.delete()
+        return redirect('/theater_admin/list/city')
+
+    return render(request, 'bookings/ModelForms/Delete_City_Form.html', {'city': city})
 
 
 # 2. Model Form Views for Movie
@@ -48,10 +59,10 @@ def Create_Shows_Form(request, theater_id):
 def Create_Seats_Form(request, show_id):
     seats_in_given_show = Seats.objects.filter(shows=show_id)
     show_rec = Shows.objects.get(id=show_id)
-    
+
     seat_vals = {
-        'seats': seats_in_given_show, 
-        'seat_count': seats_in_given_show.count(), 
+        'seats': seats_in_given_show,
+        'seat_count': seats_in_given_show.count(),
         'show_name': show_rec.name,
         'theater_name': show_rec.theater.name,
     }

@@ -7,23 +7,25 @@ urlpatterns = [
     
     # 1.1 for Listing
     path('theater_admin/home', views.Admin_Home),
-    path('theater_admin/list/city', views.Admin_List_City),
+    path('theater_admin/list/city', views.Admin_List_City, name="list_cities"),
     path('theater_admin/list/movie', views.Admin_List_Movie),
     path('theater_admin/list/theater', views.Admin_List_Theater),
     path('theater_admin/list/shows/<str:theater_id>/', views.Admin_List_Shows),
     path('theater_admin/list/seats/<str:show_id>/', views.Admin_List_Seats),
     path('theater_admin/seats/details/<str:seat_id>/', views.Admin_Seat_Details),
 
-    # 1.2 for Creating values
-    path('theater_admin/create/city', formViews.Create_City_Form),
+    # City
+    path('theater_admin/create/city', formViews.Create_City_Form, name="create_city"),
+    path('theater_admin/update/city/<str:city_id>/', formViews.Update_City_Form, name="update_city"),
+    path('theater_admin/delete/city/<str:city_id>/', formViews.Delete_City_Form, name="delete_city"),
+
+
     path('theater_admin/create/movie', formViews.Create_Movie_Form),
     path('theater_admin/create/theater', formViews.Create_Theater_Form),
     path('theater_admin/create/shows/<str:theater_id>/', formViews.Create_Shows_Form),
     path('theater_admin/create/seats/<str:show_id>/', formViews.Create_Seats_Form),
 
-    # 1.3 for Updating values
 
-    path('theater_admin/update/city/<str:city_id>/', formViews.Update_City_Form, name="update_city"),
 
     # 2. Customer Routes
     path('', views.Cust_Home_Book_Now),
