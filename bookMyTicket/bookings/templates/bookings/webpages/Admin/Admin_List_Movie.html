@@ -5,7 +5,7 @@
 <div class="container text-center">
     <div class="my-2">
         <h3 class="">All Movies Launched till yet.</h3>
-        <button class="btn btn-success">Add new Movie</button>
+        <a href="{% url 'create_movie' %}" class="btn btn-success">Add new Movie</a>
 
     </div>
     <div class="">
@@ -23,7 +23,7 @@
 
                 <tr>
                     <th scope="row">{{movie.id}}</th>
-                    <td><a href="/theater_admin/list/shows/"></a>{{movie.name}}</td>
+                    <td></a>{{movie.name}}</td>
                     <td><a href="{% url 'update_movie' movie.id %}" class="btn btn-success">Edit</a></td>
                     <td><a href="{% url 'delete_movie' movie.id %} " class="btn btn-danger">Delete</a></td>
                 </tr>

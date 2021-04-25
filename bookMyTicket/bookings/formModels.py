@@ -13,3 +13,10 @@ class Movie_Form(ModelForm):
     class Meta:
         model = Movie
         fields = '__all__'
+
+
+class Theater_Form(ModelForm):
+    class Meta:
+        model = Theater
+        fields = '__all__'
+        

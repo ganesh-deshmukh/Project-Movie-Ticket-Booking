@@ -40,8 +40,13 @@ def Delete_City_Form(request, city_id):
 # 2. Model Form Views for Movie
 
 def Create_Movie_Form(request):
-    movies = Movie.objects.all()
-    return render(request, 'bookings/ModelForms/Create_Movie_Form.html', {'movies': movies})
+    form = Movie_Form()
+    if request.method == 'POST':
+        form = Movie_Form(request.POST)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/movie')
+    return render(request, 'bookings/ModelForms/Create_Movie_Form.html', {'form': form})
 
 
 def Update_Movie_Form(request, movie_id):
@@ -67,25 +72,38 @@ def Delete_Movie_Form(request, movie_id):
 
 
 
+
+# 3. For Theater
+
 def Create_Theater_Form(request):
-    theaters = Theater.objects.all()
-    return render(request, 'bookings/ModelForms/Create_Theater_Form.html', {'theaters': theaters})
+    form = Theater_Form()
+    if request.method == 'POST':
+        form = Theater_Form(request.POST)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/theater')
+    return render(request, 'bookings/ModelForms/Create_Theater_Form.html', {'form': form})
 
 
-def Create_Shows_Form(request, theater_id):
-    shows_in_given_theater = Shows.objects.filter(theater=theater_id)
+def Update_Theater_Form(request, theater_id):
     theater_rec = Theater.objects.get(id=theater_id)
-    return render(request, 'bookings/ModelForms/Create_Shows_Form.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
+
+    form = Theater_Form(instance=theater_rec)
+    if request.method == 'POST' and theater_rec:
+        form = Theater_Form(request.POST, instance=theater_rec)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/theater')
+    return render(request, 'bookings/ModelForms/Create_Theater_Form.html', {'form': form})
 
 
-def Create_Seats_Form(request, show_id):
-    seats_in_given_show = Seats.objects.filter(shows=show_id)
-    show_rec = Shows.objects.get(id=show_id)
+def Delete_Theater_Form(request, theater_id):
+    theater = Theater.objects.get(id=theater_id)
 
-    seat_vals = {
-        'seats': seats_in_given_show,
-        'seat_count': seats_in_given_show.count(),
-        'show_name': show_rec.name,
-        'theater_name': show_rec.theater.name,
-    }
-    return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'seat_vals': seat_vals})
+    if request.method == 'POST' and theater:
+        theater.delete()
+        return redirect('/theater_admin/list/theater')
+
+    return render(request, 'bookings/ModelForms/Delete_Theater_Form.html', {'theater': theater})
+
+

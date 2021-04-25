@@ -8,11 +8,11 @@ urlpatterns = [
     # 1.1 for Listing
     path('theater_admin/home', views.Admin_Home),
     path('theater_admin/list/city', views.Admin_List_City, name="list_cities"),
-    path('theater_admin/list/movie', views.Admin_List_Movie, name='list_movies'),
-    path('theater_admin/list/theater', views.Admin_List_Theater),
-    path('theater_admin/list/shows/<str:theater_id>/', views.Admin_List_Shows),
-    path('theater_admin/list/seats/<str:show_id>/', views.Admin_List_Seats),
-    path('theater_admin/seats/details/<str:seat_id>/', views.Admin_Seat_Details),
+    path('theater_admin/list/movie', views.Admin_List_Movie, name="list_movies"),
+    path('theater_admin/list/theater', views.Admin_List_Theater, name="list_theaters"),
+    path('theater_admin/list/shows/<str:theater_id>/', views.Admin_List_Shows, name="list_shows"),
+    path('theater_admin/list/seats/<str:show_id>/', views.Admin_List_Seats, name="list_seats"),
+    path('theater_admin/seats/details/<str:seat_id>/', views.Admin_Seat_Details, name="list_seat_details"),
 
     # City
     path('theater_admin/create/city', formViews.Create_City_Form, name="create_city"),
@@ -21,15 +21,16 @@ urlpatterns = [
 
 
     # Movie
-    path('theater_admin/create/movie', formViews.Create_Movie_Form),
+    path('theater_admin/create/movie', formViews.Create_Movie_Form, name="create_movie"),
     path('theater_admin/update/movie/<str:movie_id>/', formViews.Update_Movie_Form, name="update_movie"),
     path('theater_admin/delete/movie/<str:movie_id>/', formViews.Delete_Movie_Form, name="delete_movie"),
 
 
 
-    path('theater_admin/create/theater', formViews.Create_Theater_Form),
-    path('theater_admin/create/shows/<str:theater_id>/', formViews.Create_Shows_Form),
-    path('theater_admin/create/seats/<str:show_id>/', formViews.Create_Seats_Form),
+    # Theater
+    path('theater_admin/create/theater', formViews.Create_Theater_Form, name="create_theater"),
+    path('theater_admin/update/theater/<str:theater_id>/', formViews.Update_Theater_Form, name="update_theater"),
+    path('theater_admin/delete/theater/<str:theater_id>/', formViews.Delete_Theater_Form, name="delete_theater"),
 
 
 
