@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import *
+
 
 # Admin Views
 
@@ -8,7 +10,8 @@ def Admin_Home(request):
 
 
 def Admin_Add_City(request):
-    return render(request, 'bookings/Admin_Add_City.html')
+    cities = City.objects.all()
+    return render(request, 'bookings/Admin_Add_City.html', {'cities': cities})
 
 
 def Admin_Add_Movie(request):

@@ -1,1 +1,16 @@
-Admin_Add_City
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container text-center">
+   <h3 class="">Add New City</h3>
+    {% for city in cities %}
+        <ol class="list-group w-25">
+            <li class="list-group-item">{{city.name}}</li>
+        </ol>
+        
+    {% endfor %}
+</div>
+
+{% endblock %}
+
