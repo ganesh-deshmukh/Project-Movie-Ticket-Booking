@@ -44,7 +44,7 @@ class Movie(models.Model):
 	genre = models.CharField(max_length=24, null=True, default="")
 	release_date = models.CharField(max_length=24, null=True, default="")
 	language_avail = models.CharField(max_length=24, null=True, default="")
-	# shown_in_theater = models.ManyToManyField(Theater)
+	shown_in_theater = models.ManyToManyField(Theater)
 
 	def __str__(self):
 		return self.name
