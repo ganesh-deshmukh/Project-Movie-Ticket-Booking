@@ -42,7 +42,7 @@ def Cust_Select_Theater(request):
 
 
 def Cust_Select_Show_With_Seat(request):
-    return render(render, 'bookings/Cust_Select_Show_With_Seat.html')
+    return render(request, 'bookings/Cust_Select_Show_With_Seat.html')
 
 
 def Cust_Booking_Payment(request):
