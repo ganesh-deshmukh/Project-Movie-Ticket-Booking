@@ -15,15 +15,18 @@ def Admin_Add_City(request):
 
 
 def Admin_Add_Movie(request):
-    return render(request, 'bookings/Admin_Add_Movie.html')
+    movies = Movie.objects.all()
+    return render(request, 'bookings/Admin_Add_Movie.html', {'movies': movies})
 
 
 def Admin_Add_Theater(request):
-    return render(request, 'bookings/Admin_Add_Theater.html')
+    theaters = Theater.objects.all()
+    return render(request, 'bookings/Admin_Add_Theater.html', {'theaters': theaters})
 
 
-def Admin_Add_Show_With_Seats(request):
-    return render(request, 'bookings/Admin_Add_Show_With_Seats.html')
+def Admin_Add_Show_With_Seats(request, theater_id):
+    shows_in_given_theater = Shows.objects.filter(theater=theater_id)
+    return render(request, 'bookings/Admin_Add_Show_With_Seats.html', {'shows': shows_in_given_theater})
 
 
 # Customer Views
