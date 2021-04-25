@@ -6,28 +6,28 @@ from .models import *
 # Admin Views
 
 def Admin_Home(request):
-    return render(request, 'bookings/Admin_Home.html')
+    return render(request, 'bookings/webpages/Admin/Admin_Home.html')
 
 
 def Admin_Add_City(request):
     cities = City.objects.all()
-    return render(request, 'bookings/Admin_Add_City.html', {'cities': cities})
+    return render(request, 'bookings/webpages/Admin/Admin_Add_City.html', {'cities': cities})
 
 
 def Admin_Add_Movie(request):
     movies = Movie.objects.all()
-    return render(request, 'bookings/Admin_Add_Movie.html', {'movies': movies})
+    return render(request, 'bookings/webpages/Admin/Admin_Add_Movie.html', {'movies': movies})
 
 
 def Admin_Add_Theater(request):
     theaters = Theater.objects.all()
-    return render(request, 'bookings/Admin_Add_Theater.html', {'theaters': theaters})
+    return render(request, 'bookings/webpages/Admin/Admin_Add_Theater.html', {'theaters': theaters})
 
 
 def Admin_Add_Shows(request, theater_id):
     shows_in_given_theater = Shows.objects.filter(theater=theater_id)
     theater_rec = Theater.objects.get(id=theater_id)
-    return render(request, 'bookings/Admin_Add_Shows.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
+    return render(request, 'bookings/webpages/Admin/Admin_Add_Shows.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
 
 
 def Admin_Add_Seats(request, show_id):
@@ -40,43 +40,43 @@ def Admin_Add_Seats(request, show_id):
         'show_name': show_rec.name,
         'theater_name': show_rec.theater.name,
     }
-    return render(request, 'bookings/Admin_Add_Seats.html', {'seat_vals': seat_vals})
+    return render(request, 'bookings/webpages/Admin/Admin_Add_Seats.html', {'seat_vals': seat_vals})
 
 
 def Admin_Seat_Details(request, seat_id):
     seat= Seats.objects.get(id=seat_id)
     
-    return render(request, 'bookings/Admin_Seat_Details.html', {'seat': seat})
+    return render(request, 'bookings/webpages/Admin/Admin_Seat_Details.html', {'seat': seat})
 
 
 # Customer Views
 
 def Cust_Home_Book_Now(request):
-    return render(request, 'bookings/Cust_Home_Book_Now.html')
+    return render(request, 'bookings/webpages/Customer/Cust_Home_Book_Now.html')
 
 
 def Cust_Select_City(request):
-    return render(request, 'bookings/Cust_Select_City.html')
+    return render(request, 'bookings/webpages/Customer/Cust_Select_City.html')
 
 
 def Cust_Select_Movie(request):
-    return render(request, 'bookings/Cust_Select_Movie.html')
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Movie.html')
 
 
 def Cust_Select_Theater(request):
-    return render(request, 'bookings/Cust_Select_Theater.html')
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Theater.html')
 
 
 def Cust_Select_Show(request):
-    return render(request, 'bookings/Cust_Select_Show.html')
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Show.html')
 
 
 def Cust_Select_Seat(request):
-    return render(request, 'bookings/Cust_Select_Seat.html')
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Seat.html')
 
 
 def Cust_Booking_Payment(request):
-    return render(request, 'bookings/Cust_Booking_Payment.html')
+    return render(request, 'bookings/webpages/Customer/Cust_Booking_Payment.html')
 
 
 
