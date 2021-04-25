@@ -11,7 +11,7 @@
 
     <div class="grid-container grid-container--fill border border-success mt-3">
         {% for seat in seat_vals.seats %}
-        <a href="/admin/seat_details">
+        <a href="/theater_admin/seats/details/{{seat.id}}">
             <div class="grid-element p-2 m-2 bg-secondary text-light text-center">
                 {{seat.id}}
             </div>

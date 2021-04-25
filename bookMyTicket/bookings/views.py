@@ -43,6 +43,12 @@ def Admin_Add_Seats(request, show_id):
     return render(request, 'bookings/Admin_Add_Seats.html', {'seat_vals': seat_vals})
 
 
+def Admin_Seat_Details(request, seat_id):
+    seat= Seats.objects.get(id=seat_id)
+    
+    return render(request, 'bookings/Admin_Seat_Details.html', {'seat': seat})
+
+
 # Customer Views
 
 def Cust_Home_Book_Now(request):

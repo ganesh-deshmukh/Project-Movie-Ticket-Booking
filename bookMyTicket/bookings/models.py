@@ -58,7 +58,7 @@ class Shows(models.Model):
 	movie_shown = models.ForeignKey(Movie, null=True, on_delete= models.SET_NULL)
 
 	def __str__(self):
-		return self.name + " Show at " + self.theater.name
+		return self.name
 
 	class Meta:
          db_table = 'Shows'

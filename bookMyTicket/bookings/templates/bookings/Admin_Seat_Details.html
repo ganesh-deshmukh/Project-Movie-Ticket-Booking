@@ -1,0 +1,29 @@
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container text-center">
+    <h4>Seat Details:</h4>
+
+    <div class="p-2">
+        {{ seat.id }}
+    </div>
+    <div class="p-2">
+        {{ seat.booking_status }}
+    </div>
+    <div class="p-2">
+        {{ seat.booked_by_cust }}
+    </div>
+    <div class="p-2">
+        {{ seat.shows.name }}
+    </div>
+    <div class="p-2">
+        {{ seat.shows.theater.name }}
+    </div>
+    <div class="p-2">
+        {{ seat.shows.movie_shown }}
+    </div>
+
+</div>
+
+{% endblock %}

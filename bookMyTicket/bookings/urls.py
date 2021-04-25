@@ -10,6 +10,8 @@ urlpatterns = [
     path('theater_admin/add/theater', views.Admin_Add_Theater),
     path('theater_admin/add/shows/<str:theater_id>/', views.Admin_Add_Shows),
     path('theater_admin/add/seats/<str:show_id>/', views.Admin_Add_Seats),
+    path('theater_admin/seats/details/<str:seat_id>/', views.Admin_Seat_Details),
+
 
     # Customer Routes
     path('', views.Cust_Home_Book_Now),
