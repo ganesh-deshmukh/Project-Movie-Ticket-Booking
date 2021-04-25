@@ -8,7 +8,7 @@ urlpatterns = [
     # 1.1 for Listing
     path('theater_admin/home', views.Admin_Home),
     path('theater_admin/list/city', views.Admin_List_City, name="list_cities"),
-    path('theater_admin/list/movie', views.Admin_List_Movie),
+    path('theater_admin/list/movie', views.Admin_List_Movie, name='list_movies'),
     path('theater_admin/list/theater', views.Admin_List_Theater),
     path('theater_admin/list/shows/<str:theater_id>/', views.Admin_List_Shows),
     path('theater_admin/list/seats/<str:show_id>/', views.Admin_List_Seats),
@@ -20,7 +20,13 @@ urlpatterns = [
     path('theater_admin/delete/city/<str:city_id>/', formViews.Delete_City_Form, name="delete_city"),
 
 
+    # Movie
     path('theater_admin/create/movie', formViews.Create_Movie_Form),
+    path('theater_admin/update/movie/<str:movie_id>/', formViews.Update_Movie_Form, name="update_movie"),
+    path('theater_admin/delete/movie/<str:movie_id>/', formViews.Delete_Movie_Form, name="delete_movie"),
+
+
+
     path('theater_admin/create/theater', formViews.Create_Theater_Form),
     path('theater_admin/create/shows/<str:theater_id>/', formViews.Create_Shows_Form),
     path('theater_admin/create/seats/<str:show_id>/', formViews.Create_Seats_Form),

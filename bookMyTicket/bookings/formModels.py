@@ -6,3 +6,10 @@ class City_Form(ModelForm):
     class Meta:
         model = City
         fields = '__all__'
+
+
+
+class Movie_Form(ModelForm):
+    class Meta:
+        model = Movie
+        fields = '__all__'

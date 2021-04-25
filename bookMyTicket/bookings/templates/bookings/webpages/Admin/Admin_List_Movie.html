@@ -24,8 +24,8 @@
                 <tr>
                     <th scope="row">{{movie.id}}</th>
                     <td><a href="/theater_admin/list/shows/"></a>{{movie.name}}</td>
-                    <td><button class="btn btn-success">Edit</button></td>
-                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><a href="{% url 'update_movie' movie.id %}" class="btn btn-success">Edit</a></td>
+                    <td><a href="{% url 'delete_movie' movie.id %} " class="btn btn-danger">Delete</a></td>
                 </tr>
 
                 {% endfor %}

@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
-from .formModels import City_Form
+from .formModels import *
 
 # 1. Model Form Views for City
-
 
 def Create_City_Form(request):
     form = City_Form()
@@ -43,6 +42,29 @@ def Delete_City_Form(request, city_id):
 def Create_Movie_Form(request):
     movies = Movie.objects.all()
     return render(request, 'bookings/ModelForms/Create_Movie_Form.html', {'movies': movies})
+
+
+def Update_Movie_Form(request, movie_id):
+    movie_rec = Movie.objects.get(id=movie_id)
+
+    form = Movie_Form(instance=movie_rec)
+    if request.method == 'POST':
+        form = Movie_Form(request.POST, instance=movie_rec)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/movie')
+    return render(request, 'bookings/ModelForms/Create_Movie_Form.html', {'form': form})
+
+
+def Delete_Movie_Form(request, movie_id):
+    movie = Movie.objects.get(id=movie_id)
+
+    if request.method == 'POST' and movie:
+        movie.delete()
+        return redirect('/theater_admin/list/movie')
+
+    return render(request, 'bookings/ModelForms/Delete_Movie_Form.html', {'movie': movie})
+
 
 
 def Create_Theater_Form(request):
