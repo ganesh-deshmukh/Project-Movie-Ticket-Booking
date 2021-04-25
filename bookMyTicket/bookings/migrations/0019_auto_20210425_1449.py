@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='seats',
-            name='show_time',
+            name='shows',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='bookings.shows'),
         ),
         migrations.DeleteModel(

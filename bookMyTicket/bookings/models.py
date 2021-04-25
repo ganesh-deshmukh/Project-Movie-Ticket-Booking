@@ -73,10 +73,9 @@ class Seats(models.Model):
 	)
 
 	seat_code = models.CharField(max_length=24, null=True)
-	present_in_theater = models.ForeignKey(Theater, null=True, on_delete= models.SET_NULL)
 	booking_status = models.CharField(max_length=24, null=True, choices=BOOKING_STATUS, default=BOOKING_STATUS[1][0])
 	booked_by_cust = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
-	show_time = models.ForeignKey(Shows, null=True, on_delete= models.SET_NULL)
+	shows = models.ForeignKey(Shows, null=True, on_delete= models.SET_NULL)
 	
 	def __str__(self):
 		return self.seat_code	

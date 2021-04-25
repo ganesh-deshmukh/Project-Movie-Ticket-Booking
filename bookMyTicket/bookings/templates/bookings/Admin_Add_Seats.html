@@ -4,31 +4,32 @@
 
 <div class="container text-center">
     <div class="my-2">
-        <h3 class="">Available Shows at {{theater_name}}</h3>
-        <button class="btn btn-success">Add new Show</button>
+        <h4 class="">Selected Theater {{seat_vals.theater_name}}</h4>
+        <h4 class="">Selected Show {{seat_vals.show_name}}</h4>
+        <button class="btn btn-success">Add new Seat</button>
 
     </div>
     <div class="">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Show ID</th>
-                    <th scope="col">Show Name</th>
-                    <th scope="col">Edit Show</th>
-                    <th scope="col">Delete Show</th>
+                    <th scope="col">Seat ID</th>
+                    <th scope="col">Seat Code</th>
+                    <th scope="col">Edit Seat</th>
+                    <th scope="col">Delete Seat</th>
                     <th scope="col">Add/Edit Seats</th>
                 </tr>
             </thead>
             <tbody>
-                {% for show in shows %}
+                {% for seat in seat_vals.seats %}
 
                 <tr>
-                    <th scope="row">{{show.id}}</th>
-                    <td>{{show.name}}</a></td>
-                    <td><button class="btn btn-success">Edit Show</button></td>
-                    <td><button class="btn btn-danger">Delete Show</button></td>
+                    <th scope="row">{{seat.id}}</th>
+                    <td>{{seat.seat_code}}</a></td>
+                    <td><button class="btn btn-success">Edit seat</button></td>
+                    <td><button class="btn btn-danger">Delete seat</button></td>
                     <td>
-                        <a class="btn btn-warning" href="/theater_admin/add/shows/{{show.id}}">Add/Edit Seats</a>
+                        <a class="btn btn-warning" href="/theater_admin/add/seats/{{seat.id}}">Add/Edit Seats</a>
                     </td>
                 </tr>
 

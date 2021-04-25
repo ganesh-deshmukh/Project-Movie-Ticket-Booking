@@ -30,10 +30,16 @@ def Admin_Add_Shows(request, theater_id):
     return render(request, 'bookings/Admin_Add_Shows.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
 
 
-def Admin_Add_Seats(request, theater_id):
-    shows_in_given_theater = Shows.objects.filter(theater=theater_id)
-    theater_rec = Theater.objects.get(id=theater_id)
-    return render(request, 'bookings/Admin_Add_Seats.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
+def Admin_Add_Seats(request, show_id):
+    seats_in_given_show = Seats.objects.filter(shows=show_id)
+    show_rec = Shows.objects.get(id=show_id)
+    
+    seat_vals = {
+        'seats': seats_in_given_show, 
+        'show_name': show_rec.name,
+        'theater_name': show_rec.theater.name,
+    }
+    return render(request, 'bookings/Admin_Add_Seats.html', {'seat_vals': seat_vals})
 
 
 # Customer Views
