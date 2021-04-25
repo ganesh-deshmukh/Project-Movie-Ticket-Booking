@@ -5,11 +5,11 @@ from . import views
 urlpatterns = [
     # Admin Routes
     path('theater_admin/home', views.Admin_Home),
-    path('theater_admin/add/city', views.Admin_Add_City),
-    path('theater_admin/add/movie', views.Admin_Add_Movie),
-    path('theater_admin/add/theater', views.Admin_Add_Theater),
-    path('theater_admin/add/shows/<str:theater_id>/', views.Admin_Add_Shows),
-    path('theater_admin/add/seats/<str:show_id>/', views.Admin_Add_Seats),
+    path('theater_admin/add/city', views.Admin_List_City),
+    path('theater_admin/add/movie', views.Admin_List_Movie),
+    path('theater_admin/add/theater', views.Admin_List_Theater),
+    path('theater_admin/add/shows/<str:theater_id>/', views.Admin_List_Shows),
+    path('theater_admin/add/seats/<str:show_id>/', views.Admin_List_Seats),
     path('theater_admin/seats/details/<str:seat_id>/', views.Admin_Seat_Details),
 
 

@@ -9,28 +9,28 @@ def Admin_Home(request):
     return render(request, 'bookings/webpages/Admin/Admin_Home.html')
 
 
-def Admin_Add_City(request):
+def Admin_List_City(request):
     cities = City.objects.all()
-    return render(request, 'bookings/webpages/Admin/Admin_Add_City.html', {'cities': cities})
+    return render(request, 'bookings/webpages/Admin/Admin_List_City.html', {'cities': cities})
 
 
-def Admin_Add_Movie(request):
+def Admin_List_Movie(request):
     movies = Movie.objects.all()
-    return render(request, 'bookings/webpages/Admin/Admin_Add_Movie.html', {'movies': movies})
+    return render(request, 'bookings/webpages/Admin/Admin_List_Movie.html', {'movies': movies})
 
 
-def Admin_Add_Theater(request):
+def Admin_List_Theater(request):
     theaters = Theater.objects.all()
-    return render(request, 'bookings/webpages/Admin/Admin_Add_Theater.html', {'theaters': theaters})
+    return render(request, 'bookings/webpages/Admin/Admin_List_Theater.html', {'theaters': theaters})
 
 
-def Admin_Add_Shows(request, theater_id):
+def Admin_List_Shows(request, theater_id):
     shows_in_given_theater = Shows.objects.filter(theater=theater_id)
     theater_rec = Theater.objects.get(id=theater_id)
-    return render(request, 'bookings/webpages/Admin/Admin_Add_Shows.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
+    return render(request, 'bookings/webpages/Admin/Admin_List_Shows.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
 
 
-def Admin_Add_Seats(request, show_id):
+def Admin_List_Seats(request, show_id):
     seats_in_given_show = Seats.objects.filter(shows=show_id)
     show_rec = Shows.objects.get(id=show_id)
     
@@ -40,7 +40,7 @@ def Admin_Add_Seats(request, show_id):
         'show_name': show_rec.name,
         'theater_name': show_rec.theater.name,
     }
-    return render(request, 'bookings/webpages/Admin/Admin_Add_Seats.html', {'seat_vals': seat_vals})
+    return render(request, 'bookings/webpages/Admin/Admin_List_Seats.html', {'seat_vals': seat_vals})
 
 
 def Admin_Seat_Details(request, seat_id):
