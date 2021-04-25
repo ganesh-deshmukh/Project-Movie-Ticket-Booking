@@ -25,7 +25,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">BookMyTicket</a>
+        <a class="navbar-brand" href="/">BookMyTicket</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,17 +46,10 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="container ">
+    {% block content %}
 
-            {% block content %}
-
-
-            {% endblock %}
-
-        </div>
-    </div>
-
+    {% endblock %}
+        
     <div class="text-center text-light footer fixed-bottom bg-dark">
         <h4 class="mx-auto">The whole of life is just like watching a film.....</h4>
 

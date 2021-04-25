@@ -2,3 +2,4 @@
 ./bookMyTicket/db.sqlite3
 ./bookMyTicket/
 ./bookings/__pycache__/*.pyc
+bookMyTicket/bookMyTicket/__pycache__/*
