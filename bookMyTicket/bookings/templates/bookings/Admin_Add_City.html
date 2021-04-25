@@ -3,14 +3,30 @@
 {% block content %}
 
 <div class="container text-center">
-   <h3 class="">Add New City</h3>
-    {% for city in cities %}
-        <ol class="list-group w-25">
-            <li class="list-group-item">{{city.name}}</li>
-        </ol>
-        
-    {% endfor %}
+    <h3 class="">Available Cities</h3>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Sr. No.</th>
+                <th scope="col">City Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for city in cities %}
+
+            <tr>
+                <th scope="row">1</th>
+                <td>{{city.name}}</td>
+                <td><button class="btn btn-success">Edit</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}
-
