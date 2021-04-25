@@ -1,2 +1,4 @@
 # ./bookMyTicket/booking/migrations/*
-./bookMyTicket/db.sqlite3
+bookMyTicket/bookMyTicket/db.sqlite3
+bookMyTicket/bookMyTicket/
+bookMyTicket/bookings/__pycache__/urls.cpython-36.pyc
