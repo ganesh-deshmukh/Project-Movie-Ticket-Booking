@@ -8,7 +8,6 @@ class City_Form(ModelForm):
         fields = '__all__'
 
 
-
 class Movie_Form(ModelForm):
     class Meta:
         model = Movie
@@ -18,5 +17,11 @@ class Movie_Form(ModelForm):
 class Theater_Form(ModelForm):
     class Meta:
         model = Theater
+        fields = '__all__'
+
+
+class Shows_Form(ModelForm):
+    class Meta:
+        model = Shows
         fields = '__all__'
         

@@ -107,3 +107,38 @@ def Delete_Theater_Form(request, theater_id):
     return render(request, 'bookings/ModelForms/Delete_Theater_Form.html', {'theater': theater})
 
 
+
+# 4. For Shows
+
+def Create_Shows_Form(request):
+    form = Shows_Form()
+    if request.method == 'POST':
+        form = Shows_Form(request.POST)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/shows')
+    return render(request, 'bookings/ModelForms/Create_Shows_Form.html', {'form': form})
+
+
+def Update_Shows_Form(request, shows_id):
+    shows_rec = Shows.objects.get(id=shows_id)
+
+    form = Shows_Form(instance=shows_rec)
+    if request.method == 'POST' and shows_rec:
+        form = Shows_Form(request.POST, instance=shows_rec)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/shows')
+    return render(request, 'bookings/ModelForms/Create_Shows_Form.html', {'form': form})
+
+
+def Delete_Shows_Form(request, shows_id):
+    shows = Shows.objects.get(id=shows_id)
+
+    if request.method == 'POST' and shows:
+        shows.delete()
+        return redirect('/theater_admin/list/shows')
+
+    return render(request, 'bookings/ModelForms/Delete_Shows_Form.html', {'shows': shows})
+
+

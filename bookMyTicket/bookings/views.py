@@ -25,18 +25,25 @@ def Admin_List_Theater(request):
 
 
 def Admin_List_Shows(request, theater_id):
+
     shows_in_given_theater = Shows.objects.filter(theater=theater_id)
-    theater_rec = Theater.objects.get(id=theater_id)
-    return render(request, 'bookings/webpages/Admin/Admin_List_Shows.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
+    theater = Theater.objects.get(id=theater_id)
+    context = {
+        'shows': shows_in_given_theater,
+        'count': shows_in_given_theater.count(),
+        'theater': theater
+    }
+
+    return render(request, 'bookings/webpages/Admin/Admin_List_Shows.html', context)
 
 
 def Admin_List_Seats(request, show_id):
     seats_in_given_show = Seats.objects.filter(shows=show_id)
     show_rec = Shows.objects.get(id=show_id)
-    
+
     seat_vals = {
-        'seats': seats_in_given_show, 
-        'seat_count': seats_in_given_show.count(), 
+        'seats': seats_in_given_show,
+        'seat_count': seats_in_given_show.count(),
         'show_name': show_rec.name,
         'theater_name': show_rec.theater.name,
     }
@@ -44,8 +51,8 @@ def Admin_List_Seats(request, show_id):
 
 
 def Admin_Seat_Details(request, seat_id):
-    seat= Seats.objects.get(id=seat_id)
-    
+    seat = Seats.objects.get(id=seat_id)
+
     return render(request, 'bookings/webpages/Admin/Admin_Seat_Details.html', {'seat': seat})
 
 
@@ -77,7 +84,6 @@ def Cust_Select_Seat(request):
 
 def Cust_Booking_Payment(request):
     return render(request, 'bookings/webpages/Customer/Cust_Booking_Payment.html')
-
 
 
 # Common Views

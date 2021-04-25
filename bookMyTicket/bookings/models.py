@@ -54,7 +54,7 @@ class Movie(models.Model):
 
 class Shows(models.Model):
 	name = models.CharField(max_length=24, null=True)
-	theater = models.ForeignKey(Theater, null=True, on_delete= models.SET_NULL)
+	theater = models.ForeignKey(Theater, null=True, on_delete= models.CASCADE)
 	movie_shown = models.ForeignKey(Movie, null=True, on_delete= models.SET_NULL)
 
 	def __str__(self):

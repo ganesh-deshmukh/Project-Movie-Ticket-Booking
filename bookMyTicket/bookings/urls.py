@@ -34,6 +34,12 @@ urlpatterns = [
 
 
 
+    # Shows
+    path('theater_admin/create/shows', formViews.Create_Shows_Form, name="create_shows"),
+    path('theater_admin/update/shows/<str:shows_id>/', formViews.Update_Shows_Form, name="update_shows"),
+    path('theater_admin/delete/shows/<str:shows_id>/', formViews.Delete_Shows_Form, name="delete_shows"),
+
+
     # 2. Customer Routes
     path('', views.Cust_Home_Book_Now),
     path('customer/select/city', views.Cust_Select_City),
