@@ -64,17 +64,6 @@ class Shows(models.Model):
          db_table = 'Shows'
 	
 
-class ShowsFromTheater(models.Model):
-	name = models.CharField(max_length=24, null=True)
-	movie_shown = models.ForeignKey(Movie, null=True, on_delete= models.SET_NULL)
-
-	def __str__(self):
-		return self.name
-
-	class Meta:
-         db_table = 'ShowsFromTheater'
-	
-
 class Seats(models.Model):
 	BOOKING_STATUS = (
 		('BOOKED', 'BOOKED'),
@@ -87,7 +76,7 @@ class Seats(models.Model):
 	present_in_theater = models.ForeignKey(Theater, null=True, on_delete= models.SET_NULL)
 	booking_status = models.CharField(max_length=24, null=True, choices=BOOKING_STATUS, default=BOOKING_STATUS[1][0])
 	booked_by_cust = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
-	avail_in_shows = models.ManyToManyField(Shows)
+	show_time = models.ForeignKey(Shows, null=True, on_delete= models.SET_NULL)
 	
 	def __str__(self):
 		return self.seat_code	
