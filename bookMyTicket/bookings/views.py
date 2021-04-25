@@ -26,7 +26,8 @@ def Admin_Add_Theater(request):
 
 def Admin_Add_Show_With_Seats(request, theater_id):
     shows_in_given_theater = Shows.objects.filter(theater=theater_id)
-    return render(request, 'bookings/Admin_Add_Show_With_Seats.html', {'shows': shows_in_given_theater})
+    theater_rec = Theater.objects.get(id=theater_id)
+    return render(request, 'bookings/Admin_Add_Show_With_Seats.html', {'shows': shows_in_given_theater, 'theater_name': theater_rec.name})
 
 
 # Customer Views
