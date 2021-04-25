@@ -1,1 +1,37 @@
-Admin_Add_Movie
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container text-center">
+    <div class="my-2">
+        <h3 class="">Available Movies</h3>
+        <button class="btn btn-success">Add new Movie</button>
+
+    </div>
+    <div class="">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Movie ID</th>
+                    <th scope="col">Movie Name</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+
+                <tr>
+                    <th scope="row">{{movie.id}}</th>
+                    <td>{{movie.name}}</td>
+                    <td><button class="btn btn-success">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
