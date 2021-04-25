@@ -3,30 +3,35 @@
 {% block content %}
 
 <div class="container text-center">
-    <h3 class="">Available Cities</h3>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Sr. No.</th>
-                <th scope="col">City Name</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for city in cities %}
+    <div class="my-2">
+        <h3 class="">Available Cities</h3>
+        <button class="btn btn-success">Add new City</button>
 
-            <tr>
-                <th scope="row">1</th>
-                <td>{{city.name}}</td>
-                <td><button class="btn btn-success">Edit</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
-            </tr>
+    </div>
+    <div class="">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">City ID</th>
+                    <th scope="col">City Name</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for city in cities %}
 
-            {% endfor %}
-        </tbody>
-    </table>
+                <tr>
+                    <th scope="row">{{city.id}}</th>
+                    <td>{{city.name}}</td>
+                    <td><button class="btn btn-success">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}
