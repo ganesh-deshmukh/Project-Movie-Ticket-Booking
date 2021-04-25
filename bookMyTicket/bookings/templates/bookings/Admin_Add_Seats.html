@@ -2,41 +2,26 @@
 
 {% block content %}
 
-<div class="container text-center">
-    <div class="my-2">
-        <h4 class="">Selected Theater {{seat_vals.theater_name}}</h4>
-        <h4 class="">Selected Show {{seat_vals.show_name}}</h4>
-        <button class="btn btn-success">Add new Seat</button>
+<div class="container ">
+    <h4 class="mt-3">Editing Details of: {{seat_vals.theater_name}} Theater, {{seat_vals.show_name}} Show.</h4>
+
+    <h5>Total Seats: {{seat_vals.seat_count}}</h5>
+    <button class="btn btn-success mr-0 px-2 py-0 ">Add new Seat</button>
+
+
+    <div class="grid-container grid-container--fill border border-success mt-3">
+        {% for seat in seat_vals.seats %}
+        <a href="/admin/seat_details">
+            <div class="grid-element p-2 m-2 bg-secondary text-light text-center">
+                {{seat.id}}
+            </div>
+        </a>
+
+        {% endfor %}
 
     </div>
-    <div class="">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Seat ID</th>
-                    <th scope="col">Seat Code</th>
-                    <th scope="col">Edit Seat</th>
-                    <th scope="col">Delete Seat</th>
-                    <th scope="col">Add/Edit Seats</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for seat in seat_vals.seats %}
 
-                <tr>
-                    <th scope="row">{{seat.id}}</th>
-                    <td>{{seat.seat_code}}</a></td>
-                    <td><button class="btn btn-success">Edit seat</button></td>
-                    <td><button class="btn btn-danger">Delete seat</button></td>
-                    <td>
-                        <a class="btn btn-warning" href="/theater_admin/add/seats/{{seat.id}}">Add/Edit Seats</a>
-                    </td>
-                </tr>
 
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
 </div>
 
 {% endblock %}

@@ -36,6 +36,7 @@ def Admin_Add_Seats(request, show_id):
     
     seat_vals = {
         'seats': seats_in_given_show, 
+        'seat_count': seats_in_given_show.count(), 
         'show_name': show_rec.name,
         'theater_name': show_rec.theater.name,
     }
