@@ -48,3 +48,13 @@ def Cust_Select_Show_With_Seat(request):
 def Cust_Booking_Payment(request):
     return render(request, 'bookings/Cust_Booking_Payment.html')
 
+
+
+# Common Views
+
+def About_Us(request):
+    return render(request, 'bookings/common/About_Us.html')
+
+
+def Contact_Us(request):
+    return render(request, 'bookings/common/Contact_Us.html')

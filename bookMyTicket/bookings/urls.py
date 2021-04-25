@@ -18,4 +18,8 @@ urlpatterns = [
     path('customer/select/show_with_seat', views.Cust_Select_Show_With_Seat),
     path('customer/booking/payment', views.Cust_Booking_Payment),
 
+    # Common Routes
+    path('about_us', views.About_Us),
+    path('contact_us', views.Contact_Us),
+
 ]
