@@ -46,12 +46,12 @@ urlpatterns = [
 
     # 2. Customer Routes
     path('', views.Cust_Home_Book_Now),
-    path('customer/select/city', views.Cust_Select_City),
-    path('customer/select/movie', views.Cust_Select_Movie),
-    path('customer/select/theater', views.Cust_Select_Theater),
-    path('customer/select/show', views.Cust_Select_Show),
-    path('customer/select/seat', views.Cust_Select_Seat),
-    path('customer/booking/payment', views.Cust_Booking_Payment),
+    path('customer/select/city', views.Cust_Select_City, name="select_city"),
+    path('customer/select/movie', views.Cust_Select_Movie, name="select_movie"),
+    path('customer/select/theater', views.Cust_Select_Theater, name="select_theater"),
+    path('customer/select/show', views.Cust_Select_Show, name="select_show"),
+    path('customer/select/seat', views.Cust_Select_Seat, name="select_seat"),
+    path('customer/booking/payment', views.Cust_Booking_Payment, name="select_payment"),
 
     # 3. Common Routes
     path('about_us', views.About_Us),
