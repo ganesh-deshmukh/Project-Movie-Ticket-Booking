@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container border border-warning mt-5">
+<div class="container-fluid border border-warning">
     <div class="my-3 ">
         <h3 class="">Available Movies</h3>
     </div>
@@ -21,10 +21,9 @@
                 <th scope="col"> Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Duration</th>
-                <th scope="col">Genre</th>
                 <th scope="col">Release Date</th>
+                <th scope="col">Genre</th>
                 <th scope="col">Language Avail</th>
-                <th scope="col">Select</th>
                 <th scope="col">Select</th>
 
             </tr>
@@ -37,11 +36,10 @@
                 <td>{{movie.name}}</td>
                 <td>{{movie.markup_price}}</td>
                 <td>{{movie.duration_in_min}}</td>
-                <td>{{movie.genre}}</td>
                 <td>{{movie.release_date}}</td>
                 <td>{{movie.genre}}</td>
                 <td>{{movie.language_avail}}</td>
-                <td><a href="{% url 'select_theater' %}" class="btn btn-success">Select</a></td>
+                <td><a href="{% url 'select_theater' city_id movie.id %}" class="btn btn-success">Select</a></td>
 
             </tr>
 

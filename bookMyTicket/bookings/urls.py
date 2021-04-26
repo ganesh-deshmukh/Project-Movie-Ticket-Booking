@@ -48,7 +48,7 @@ urlpatterns = [
     path('', views.Cust_Home_Book_Now),
     path('customer/select/city', views.Cust_Select_City, name="select_city"),
     path('customer/select/movie/<city_id>/', views.Cust_Select_Movie, name="select_movie"),
-    path('customer/select/theater', views.Cust_Select_Theater, name="select_theater"),
+    path('customer/select/theater/<city_id>/<movie_id>/', views.Cust_Select_Theater, name="select_theater"),
     path('customer/select/show', views.Cust_Select_Show, name="select_show"),
     path('customer/select/seat', views.Cust_Select_Seat, name="select_seat"),
     path('customer/booking/payment', views.Cust_Booking_Payment, name="select_payment"),

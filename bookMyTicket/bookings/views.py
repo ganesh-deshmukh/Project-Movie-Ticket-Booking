@@ -76,7 +76,6 @@ def Cust_Select_City(request):
 
 def Cust_Select_Movie(request, city_id):
     movie_name = request.GET.get('movie_name') or ''
-    print("movie_name = ", movie_name)
     movies = []
     shows = Shows.objects.all()
 
@@ -88,11 +87,26 @@ def Cust_Select_Movie(request, city_id):
             else:
                 movies.append(show.movie_shown)
 
-    return render(request, 'bookings/webpages/Customer/Cust_Select_Movie.html', {"movies": movies})
+    context = {
+        "movies": movies,
+        "city_id": city_id,
+    }
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Movie.html', context)
 
 
-def Cust_Select_Theater(request):
-    return render(request, 'bookings/webpages/Customer/Cust_Select_Theater.html')
+def Cust_Select_Theater(request, city_id, movie_id):
+
+    theaters = []
+    theaters_in_city = Theater.objects.filter(located_city=city_id)
+
+    for show in Shows.objects.all():
+        if(str(show.theater.located_city.id) == city_id
+           and (str(show.movie_shown.id) == movie_id)
+           and show.theater not in theaters):
+
+            theaters.append(show.theater)
+
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Theater.html', {'theaters': theaters})
 
 
 def Cust_Select_Show(request):

@@ -1,1 +1,41 @@
-Cust_Select_Theater
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container border border-warning mt-5">
+    <div class="my-3 ">
+        <h3 class="">Available Theaters</h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> ID</th>
+                <th scope="col"> Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Location</th>
+                <th scope="col">Seats Available</th>
+                <th scope="col">Extra Charges</th>
+                <th scope="col">Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for theater in theaters %}
+
+            <tr>
+                <th scope="row">{{theater.id}}</th>
+                <td>{{theater.name}}</td>
+                <td>{{theater.description}}</td>
+                <td>{{theater.located_city}}</td>
+                <td>{{theater.seats_count}}</td>
+                <td>{{theater.service_charges}}</td>
+                <td><a href="{% url 'select_show' %}" class="btn btn-success">Select</a></td>
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
