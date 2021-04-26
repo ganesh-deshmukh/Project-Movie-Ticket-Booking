@@ -1,1 +1,24 @@
-Cust_Select_Seat
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container ">
+    <h4 class="mt-2">Book Now, Only {{avail_seats}} Spots left...</h4>
+
+    <div class="grid-container grid-container--fill border border-success mt-3">
+        {% for seat in seats %}
+
+        <a href="/theater_admin/seats/details/{{seat.id}}">
+            <div class="grid-element p-2 m-2 text-light text-center{% if seat.booking_status == 'AVAILABLE' %} bg-success {% else %} bg-danger {% endif %}">
+                {{seat.id}}
+            </div>
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+
+</div>
+
+{% endblock %}

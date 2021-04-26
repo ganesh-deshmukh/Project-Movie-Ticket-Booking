@@ -121,8 +121,23 @@ def Cust_Select_Show(request, theater_id, movie_id):
     return render(request, 'bookings/webpages/Customer/Cust_Select_Show.html', {'shows': shows})
 
 
+
 def Cust_Select_Seat(request, show_id):
-    return render(request, 'bookings/webpages/Customer/Cust_Select_Seat.html')
+    seats = Seats.objects.filter(shows=show_id)
+    show = Shows.objects.get(id=show_id)
+    avail_seats = 0
+    
+    for seat in seats:
+        if(seat.booking_status == 'AVAILABLE'):
+            avail_seats+=1
+    
+    context = {
+        'seats': seats,
+        'avail_seats': avail_seats,
+        'show': show,
+    }
+
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Seat.html', context)
 
 
 def Cust_Booking_Payment(request):

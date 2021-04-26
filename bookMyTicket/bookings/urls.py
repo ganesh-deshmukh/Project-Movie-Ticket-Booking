@@ -50,7 +50,7 @@ urlpatterns = [
     path('customer/select/movie/<city_id>/', views.Cust_Select_Movie, name="select_movie"),
     path('customer/select/theater/<city_id>/<movie_id>/', views.Cust_Select_Theater, name="select_theater"),
     path('customer/select/show/<theater_id>/<movie_id>/', views.Cust_Select_Show, name="select_show"),
-    path('customer/select/seat<show_id>/', views.Cust_Select_Seat, name="select_seat"),
+    path('customer/select/seat/<show_id>/', views.Cust_Select_Seat, name="select_seat"),
     path('customer/booking/payment', views.Cust_Booking_Payment, name="select_payment"),
 
     # 3. Common Routes
