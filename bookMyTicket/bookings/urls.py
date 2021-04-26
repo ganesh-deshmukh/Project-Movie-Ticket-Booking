@@ -40,7 +40,7 @@ urlpatterns = [
 
     # Seats
     path('theater_admin/create/seats/<str:show_id>/', formViews.Create_Seats_Form, name="create_seats"),
-    path('theater_admin/update/seats/<str:show_id>/<str:seats_id>/', formViews.Update_Seats_Form, name="update_seats"),
+    path('theater_admin/update/seats/<str:seats_id>/', formViews.Update_Seats_Form, name="update_seats"),
     path('theater_admin/delete/seats/<str:seats_id>/', formViews.Delete_Seats_Form, name="delete_seats"),
 
 

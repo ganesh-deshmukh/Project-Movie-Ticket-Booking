@@ -14,6 +14,9 @@
                 <th scope="col">Theater Name</th>
                 <th scope="col">Show Name</th>
                 <th scope="col">Movie Shown</th>
+                
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +27,10 @@
                 <td>{{seat.shows.theater.name}}</td>
                 <td>{{seat.shows.name}}</td>
                 <td>{{seat.shows.movie_shown}}</td>
-
+                
+                <td><a href="{% url 'update_seats' seat.id %}" class="btn btn-success">Edit </a></td>
+                <td><a href="{% url 'delete_seats' seat.id %}" class="btn btn-danger">Delete</a></td>
+                    
             </tr>
 
         </tbody>
