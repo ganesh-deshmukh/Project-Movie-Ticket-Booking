@@ -25,7 +25,7 @@
                 <tr>
                     <th scope="row">{{show.id}}</th>
                     <td>{{show.name}}</a></td>
-                    <td><a href="{% url 'update_shows' show.id %}" class="btn btn-success">Edit </a></td>
+                    <td><a href="{% url 'update_shows' theater.id show.id %}" class="btn btn-success">Edit </a></td>
                     <td><a href="{% url 'delete_shows' show.id %}" class="btn btn-danger">Delete Show</a></td>
                     <td>
                         <a class="btn btn-warning" href="/theater_admin/list/seats/{{show.id}}">Add/Edit Seats</a>

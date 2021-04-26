@@ -120,7 +120,7 @@ def Create_Shows_Form(request, theater_id):
     return render(request, 'bookings/ModelForms/Create_Shows_Form.html', {'form': form})
 
 
-def Update_Shows_Form(request, shows_id):
+def Update_Shows_Form(request, theater_id, shows_id):
     shows_rec = Shows.objects.get(id=shows_id)
 
     form = Shows_Form(instance=shows_rec)
@@ -128,17 +128,17 @@ def Update_Shows_Form(request, shows_id):
         form = Shows_Form(request.POST, instance=shows_rec)
         if(form.is_valid):
             form.save()
-            return redirect('/theater_admin/list/shows')
+            return redirect('/theater_admin/list/shows/' + theater_id)
     return render(request, 'bookings/ModelForms/Create_Shows_Form.html', {'form': form})
 
 
 def Delete_Shows_Form(request, shows_id):
     shows = Shows.objects.get(id=shows_id)
-
+    theater = shows.theater
     if request.method == 'POST' and shows:
         shows.delete()
-        return redirect('/theater_admin/list/shows')
+        return redirect('/theater_admin/list/shows/' + str(theater.id))
 
-    return render(request, 'bookings/ModelForms/Delete_Shows_Form.html', {'shows': shows})
+    return render(request, 'bookings/ModelForms/Delete_Shows_Form.html', {'shows': shows, 'theater': theater})
 
 
