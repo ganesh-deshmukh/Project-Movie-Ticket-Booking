@@ -3,10 +3,41 @@
 {% block content %}
 
 <div class="container">
+    <div class="my-3 ">
+        <h3 class="">Available Cities</h3>
+    </div>
 
-    <h1>Select City</h1>
-   
+    <div class="input-group rounded my-3">
+        <form class="form-inline" action="" method="GET">
+            <input type="search" class="form-control rounded" placeholder="Search" name="city_name" />
+            <button type="submit" class="btn btn-primary mx-3">Submit</button>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">City ID</th>
+                <th scope="col">City Name</th>
+                <th scope="col">City Pincode</th>
+                <th scope="col">Select City</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for city in cities %}
+
+            <tr>
+                <th scope="row">{{city.id}}</th>
+                <td>{{city.name}}</td>
+                <td>{{city.pincode}}</td>
+                <td><a href="{% url 'select_movie' city.id %}" class="btn btn-success">Select</a></td>
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}
-
