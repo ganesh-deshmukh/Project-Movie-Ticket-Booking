@@ -2,28 +2,33 @@
 
 {% block content %}
 
-<div class="container text-center">
-    <h4>Seat Details:</h4>
+<div class="container text-center p-3 my-5 border border-primary">
+    <h4>Seat Details</h4>
 
-    <div class="p-2">
-      {{ seat.id }}
-    </div>
-    <div class="p-2">
-        {{ seat.booking_status }}
-    </div>
-    <div class="p-2">
-        {{ seat.booked_by_cust }}
-    </div>
-    <div class="p-2">
-        {{ seat.shows.name }}
-    </div>
-    <div class="p-2">
-        {{ seat.shows.theater.name }}
-    </div>
-    <div class="p-2">
-        {{ seat.shows.movie_shown }}
-    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Seat ID</th>
+                <th scope="col">Booking Status</th>
+                <th scope="col">Booked by </th>
+                <th scope="col">Theater Name</th>
+                <th scope="col">Show Name</th>
+                <th scope="col">Movie Shown</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{seat.id}}</td>
+                <td>{{seat.booking_status}}</td>
+                <td>{{seat.booked_by_cust}}</td>
+                <td>{{seat.shows.theater.name}}</td>
+                <td>{{seat.shows.name}}</td>
+                <td>{{seat.shows.movie_shown}}</td>
 
+            </tr>
+
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}

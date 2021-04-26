@@ -161,6 +161,16 @@ def Delete_Shows_Form(request, shows_id):
     # return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'formset': form})
 
 
+def Create_Seats_Form(request, show_id):
+    form = Seats_Form()
+    if request.method == 'POST':
+        form = Seats_Form(request.POST)
+        if(form.is_valid):
+            form.save()
+        return redirect('/theater_admin/list/seats/'+ show_id)
+    return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'form': form})
+
+
 def Update_Seats_Form(request, show_id, seats_id):
     seats_rec = Seats.objects.get(id=seats_id)
 
