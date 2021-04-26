@@ -2,11 +2,18 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container border border-success">
     <form method="POST" action="">
         {% csrf_token %}
-        {{form}}
-        <input type="submit" name="Submit">
+        {% for form in formset %}
+
+        <div class="p-2 mx-3">
+            {{form}}
+        </div>
+        {% endfor %}
+
+        <br>
+        <input class="btn btn-success mb-2" type="submit" name="Submit">
     </form>
 
 </div>

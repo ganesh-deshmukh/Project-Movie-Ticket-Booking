@@ -29,5 +29,4 @@ class Shows_Form(ModelForm):
 class Seats_Form(ModelForm):
     class Meta:
         model = Seats
-        fields = '__all__'
-        
+        fields = ('booking_status', 'shows')

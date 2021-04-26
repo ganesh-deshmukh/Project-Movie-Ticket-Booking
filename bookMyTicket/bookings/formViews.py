@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import *
 from .formModels import *
+from django.forms import modelformset_factory, inlineformset_factory
+
 
 # 1. Model Form Views for City
 
@@ -145,14 +146,19 @@ def Delete_Shows_Form(request, shows_id):
 
 # 5. For Seats
 
-def Create_Seats_Form(request, show_id):
-    form = Seats_Form()
-    if request.method == 'POST':
-        form = Seats_Form(request.POST)
-        if(form.is_valid):
-            form.save()
-            return redirect('/theater_admin/list/seats/'+ show_id)
-    return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'form': form})
+# def Create_Seats_Form(request, show_id):
+    # form = Seats_Form()
+    # SeatsFormSet = modelformset_factory(Seats, fields=('booking_status', 'shows', 'id'), extra=5)
+    # form = SeatsFormSet(queryset=Seats.objects.none())
+
+    # SeatsFormSet = inlineformset_factory(Seats, fields=('booking_status', 'shows'), extra=10)
+    # formset = SeatsFormSet(isinstance=show_id)
+
+    # if request.method == 'POST':
+    #     form = SeatsFormSet(queryset=Seats.objects.none())
+    #     instances = form.save()
+    #     return redirect('/theater_admin/list/seats/'+ show_id)
+    # return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'formset': form})
 
 
 def Update_Seats_Form(request, show_id, seats_id):

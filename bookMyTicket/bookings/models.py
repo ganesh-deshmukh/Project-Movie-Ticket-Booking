@@ -72,7 +72,7 @@ class Seats(models.Model):
 		('NOT_AVAILABLE','NOT_AVAILABLE')
 	)
 
-	seat_code = models.CharField(max_length=24, null=True)
+	# seat_code = models.CharField(max_length=24, null=True)
 	booking_status = models.CharField(max_length=24, null=True, choices=BOOKING_STATUS, default=BOOKING_STATUS[1][0])
 	booked_by_cust = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
 	shows = models.ForeignKey(Shows, null=True, on_delete= models.SET_NULL)
