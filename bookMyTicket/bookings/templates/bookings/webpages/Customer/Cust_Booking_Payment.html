@@ -1,1 +1,65 @@
-Cust_Booking_Payment
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container text-center p-3 my-5 border border-primary">
+    <h4>Seat Details</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Seat ID</th>
+                <th scope="col">Booking Status</th>
+                <th scope="col">Booked by </th>
+                <th scope="col">Theater Name</th>
+                <th scope="col">Show Name</th>
+                <th scope="col">Movie Shown</th>
+                <th scope="col">Pay</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{seat.id}}</td>
+                <td>{{seat.booking_status}}</td>
+                <td>{{seat.booked_by_cust}}</td>
+                <td>{{seat.shows.theater.name}}</td>
+                <td>{{seat.shows.name}}</td>
+                <td>{{seat.shows.movie_shown}}</td>
+
+                <!-- <td><a href="{% url 'select_payment' seat.id %}" class="btn btn-success"> Pay </a></td> -->
+                <td>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Pay
+                        Now</button>
+                </td>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-md">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Thank you for Booking.</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Payment Receipt is mailed to your Email.
+                                    <br>
+                                    Have a Great Experience.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+</div>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+{% endblock %}

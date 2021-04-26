@@ -8,7 +8,7 @@
     <div class="grid-container grid-container--fill border border-success mt-3">
         {% for seat in seats %}
 
-        <a href="/theater_admin/seats/details/{{seat.id}}">
+        <a href="{% url 'select_payment' seat.id %}">
             <div class="grid-element p-2 m-2 text-light text-center{% if seat.booking_status == 'AVAILABLE' %} bg-success {% else %} bg-danger {% endif %}">
                 {{seat.id}}
             </div>
