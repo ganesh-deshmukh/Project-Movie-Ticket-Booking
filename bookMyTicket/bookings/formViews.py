@@ -110,13 +110,13 @@ def Delete_Theater_Form(request, theater_id):
 
 # 4. For Shows
 
-def Create_Shows_Form(request):
+def Create_Shows_Form(request, theater_id):
     form = Shows_Form()
     if request.method == 'POST':
         form = Shows_Form(request.POST)
         if(form.is_valid):
             form.save()
-            return redirect('/theater_admin/list/shows')
+            return redirect('/theater_admin/list/shows/'+ theater_id)
     return render(request, 'bookings/ModelForms/Create_Shows_Form.html', {'form': form})
 
 

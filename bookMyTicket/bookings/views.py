@@ -33,6 +33,7 @@ def Admin_List_Shows(request, theater_id):
         'count': shows_in_given_theater.count(),
         'theater': theater
     }
+    print("----------------------", str(context))
 
     return render(request, 'bookings/webpages/Admin/Admin_List_Shows.html', context)
 

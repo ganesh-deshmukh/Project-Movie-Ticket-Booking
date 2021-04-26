@@ -5,7 +5,6 @@
 <div class="container text-center">
     <div class="my-2">
         <h3 class="">Available Shows at {{theater.name}}</h3>
-        <button class="btn btn-success"></button>
         <a href="{% url 'create_shows' theater.id %}" class="btn btn-success">Add new Show </a>
     </div>
     <div class="">
@@ -21,21 +20,19 @@
             </thead>
             <tbody>
                 {% if count > 0 %}
-                    {% for show in shows %}
+                {% for show in shows %}
 
-                    <tr>
-                        <th scope="row">{{show.id}}</th>
-                        <td>{{show.name}}</a></td>
-                        <td><button class="btn btn-success">Edit Show</button></td>
-                        <td><button class="btn btn-danger">Delete Show</button></td>
-                        <td><a href="{% url 'update_shows' show.id %}" class="btn btn-success">Edit </a></td>
-                        <td><a href="{% url 'delete_shows' show.id %}" class="btn btn-danger">Delete Show</a></td>
-                        <td>
-                            <a class="btn btn-warning" href="/theater_admin/list/seats/{{show.id}}">Add/Edit Seats</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <th scope="row">{{show.id}}</th>
+                    <td>{{show.name}}</a></td>
+                    <td><a href="{% url 'update_shows' show.id %}" class="btn btn-success">Edit </a></td>
+                    <td><a href="{% url 'delete_shows' show.id %}" class="btn btn-danger">Delete Show</a></td>
+                    <td>
+                        <a class="btn btn-warning" href="/theater_admin/list/seats/{{show.id}}">Add/Edit Seats</a>
+                    </td>
+                </tr>
 
-                    {% endfor %}
+                {% endfor %}
                 {% endif %}
             </tbody>
         </table>
