@@ -78,7 +78,7 @@ class Seats(models.Model):
 	shows = models.ForeignKey(Shows, null=True, on_delete= models.SET_NULL)
 	
 	def __str__(self):
-		return self.seat_code	
+		return str(self.id)	
 
 	class Meta:
 		db_table = 'Seats'

@@ -186,11 +186,11 @@ def Update_Seats_Form(request, seats_id):
 
 def Delete_Seats_Form(request, seats_id):
     seats = Seats.objects.get(id=seats_id)
-    theater = seats.theater
+    
     if request.method == 'POST' and seats:
         seats.delete()
-        return redirect('/theater_admin/list/seats/' + str(theater.id))
+        return redirect('/theater_admin/list/seats/' + str(seats.shows.id))
 
-    return render(request, 'bookings/ModelForms/Delete_Seats_Form.html', {'seats': seats, 'theater': theater})
+    return render(request, 'bookings/ModelForms/Delete_Seats_Form.html', {'seats': seats})
 
  

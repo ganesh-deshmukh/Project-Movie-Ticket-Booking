@@ -4,12 +4,11 @@
 
 <div class="container p-3 border border-primary mt-3">
 
-    <h2>Are you sure that you want to delete Movie {{movie}}?</h2>
+    <h2>Are you sure that you want to delete Seat {{seats}}?</h2>
     <form method="POST">
         {% csrf_token %}
         
-        
-        <a class="btn btn-success m-5" href="{% url 'list_movies' %}">Cancel</a>
+        <a class="btn btn-success m-5" href="{% url 'list_seats' seats.shows.id %}">Cancel</a>
         
         <input class="btn btn-danger" type="submit" name="Confirm" value="Delete">
     </form>
