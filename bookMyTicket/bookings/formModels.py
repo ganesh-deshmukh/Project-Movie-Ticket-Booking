@@ -30,3 +30,11 @@ class Seats_Form(ModelForm):
     class Meta:
         model = Seats
         fields = ('booking_status', 'shows')
+
+
+# For Payment with Seat ID.
+
+class PaymentForm(ModelForm):
+    class Meta:
+        model = Booking
+        fields = ()

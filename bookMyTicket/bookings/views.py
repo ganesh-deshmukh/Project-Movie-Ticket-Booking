@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
+from .formModels import *
 
 
 # Admin Views
@@ -140,9 +141,12 @@ def Cust_Select_Seat(request, show_id):
 
 
 def Cust_Booking_Payment(request, seat_id):
-    seat = Seats.objects.get(id=seat_id)
-    return render(request, 'bookings/webpages/Customer/Cust_Booking_Payment.html', {'seat': seat})
-
+    if(request.method == 'GET'):
+        seat = Seats.objects.get(id=seat_id)
+        return render(request, 'bookings/webpages/Customer/Cust_Booking_Payment.html', {'seat': seat})
+    else:
+        print("Create Booking in DB.")
+        return redirect('/')
 
 # Common Views
 
