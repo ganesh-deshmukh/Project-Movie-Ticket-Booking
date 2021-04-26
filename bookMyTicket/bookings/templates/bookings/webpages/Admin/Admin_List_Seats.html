@@ -3,12 +3,15 @@
 {% block content %}
 
 <div class="container ">
-    <h4 class="mt-3">Editing Details of: {{seat_vals.theater_name}} Theater, {{seat_vals.show_name}} Show.</h4>
-
+    <h4 class="mt-3">Editing Details of: {{seat_vals.show.theater.name}} Theater, {{seat_vals.show.name}} Show.</h4>
+    
+    <!-- <a href="{% url 'create_seats' seat_vals.show.id %}" class="btn btn-success p-1">Add new Seats</a> -->
+    
     <h5>Total Seats: {{seat_vals.seat_count}}</h5>
-    <button class="btn btn-success mr-0 px-2 py-0 ">Add new Seat</button>
-
-
+    <label class="w-10" for="seats_count">Enter no. of Seats to Crete:</label>
+    <input type="number" name="seats_count" id="seats_count" maxlength="4" size="2">
+    <button onclick="sendCountValueToCreateSeats(this.value)" value="{% url 'create_seats' seat_vals.show.id %}" class="btn btn-success p-1">Add new Seats</button>
+    
     <div class="grid-container grid-container--fill border border-success mt-3">
         {% for seat in seat_vals.seats %}
         <a href="/theater_admin/seats/details/{{seat.id}}">

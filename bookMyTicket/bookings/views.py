@@ -39,13 +39,12 @@ def Admin_List_Shows(request, theater_id):
 
 def Admin_List_Seats(request, show_id):
     seats_in_given_show = Seats.objects.filter(shows=show_id)
-    show_rec = Shows.objects.get(id=show_id)
+    show = Shows.objects.get(id=show_id)
 
     seat_vals = {
         'seats': seats_in_given_show,
         'seat_count': seats_in_given_show.count(),
-        'show_name': show_rec.name,
-        'theater_name': show_rec.theater.name,
+        'show': show,
     }
     return render(request, 'bookings/webpages/Admin/Admin_List_Seats.html', {'seat_vals': seat_vals})
 

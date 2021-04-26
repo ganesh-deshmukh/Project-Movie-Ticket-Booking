@@ -24,4 +24,10 @@ class Shows_Form(ModelForm):
     class Meta:
         model = Shows
         fields = '__all__'
+
+
+class Seats_Form(ModelForm):
+    class Meta:
+        model = Seats
+        fields = '__all__'
         

@@ -26,18 +26,22 @@ urlpatterns = [
     path('theater_admin/delete/movie/<str:movie_id>/', formViews.Delete_Movie_Form, name="delete_movie"),
 
 
-
     # Theater
     path('theater_admin/create/theater', formViews.Create_Theater_Form, name="create_theater"),
     path('theater_admin/update/theater/<str:theater_id>/', formViews.Update_Theater_Form, name="update_theater"),
     path('theater_admin/delete/theater/<str:theater_id>/', formViews.Delete_Theater_Form, name="delete_theater"),
 
 
-
     # Shows
     path('theater_admin/create/shows/<str:theater_id>/', formViews.Create_Shows_Form, name="create_shows"),
     path('theater_admin/update/shows/<str:theater_id>/<str:shows_id>/', formViews.Update_Shows_Form, name="update_shows"),
     path('theater_admin/delete/shows/<str:shows_id>/', formViews.Delete_Shows_Form, name="delete_shows"),
+
+
+    # Seats
+    path('theater_admin/create/seats/<str:show_id>/', formViews.Create_Seats_Form, name="create_seats"),
+    path('theater_admin/update/seats/<str:show_id>/<str:seats_id>/', formViews.Update_Seats_Form, name="update_seats"),
+    path('theater_admin/delete/seats/<str:seats_id>/', formViews.Delete_Seats_Form, name="delete_seats"),
 
 
     # 2. Customer Routes

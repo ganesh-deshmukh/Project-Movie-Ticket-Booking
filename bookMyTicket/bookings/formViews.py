@@ -142,3 +142,38 @@ def Delete_Shows_Form(request, shows_id):
     return render(request, 'bookings/ModelForms/Delete_Shows_Form.html', {'shows': shows, 'theater': theater})
 
 
+
+# 5. For Seats
+
+def Create_Seats_Form(request, show_id):
+    form = Seats_Form()
+    if request.method == 'POST':
+        form = Seats_Form(request.POST)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/seats/'+ show_id)
+    return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'form': form})
+
+
+def Update_Seats_Form(request, show_id, seats_id):
+    seats_rec = Seats.objects.get(id=seats_id)
+
+    form = Seats_Form(instance=seats_rec)
+    if request.method == 'POST' and seats_rec:
+        form = Seats_Form(request.POST, instance=seats_rec)
+        if(form.is_valid):
+            form.save()
+            return redirect('/theater_admin/list/seats/' + show_id)
+    return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'form': form})
+
+
+def Delete_Seats_Form(request, seats_id):
+    seats = Seats.objects.get(id=seats_id)
+    theater = seats.theater
+    if request.method == 'POST' and seats:
+        seats.delete()
+        return redirect('/theater_admin/list/seats/' + str(theater.id))
+
+    return render(request, 'bookings/ModelForms/Delete_Seats_Form.html', {'seats': seats, 'theater': theater})
+
+
