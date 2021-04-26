@@ -60,13 +60,37 @@ def Admin_Seat_Details(request, seat_id):
 def Cust_Home_Book_Now(request):
     return render(request, 'bookings/webpages/Customer/Cust_Home_Book_Now.html')
 
+ # for filtering
 
 def Cust_Select_City(request):
-    return render(request, 'bookings/webpages/Customer/Cust_Select_City.html')
+    city_name = request.GET.get('city_name')
+    if city_name:
+        cities = City.objects.filter(name__icontains=city_name)
+
+    else:
+        cities = City.objects.all()
+
+    return render(request, 'bookings/webpages/Customer/Cust_Select_City.html', {'cities': cities})
 
 
-def Cust_Select_Movie(request):
-    return render(request, 'bookings/webpages/Customer/Cust_Select_Movie.html')
+def Cust_Select_Movie(request, city_id):
+    movies = []
+    # theaters = Theater.objects.filter(located_city=city_id)
+
+    shows = Shows.objects.all()
+
+    for show in shows:
+        print("city_id = ", city_id)
+        print("show.theater.located_city.id = ",
+              str(show.theater.located_city.id))
+        if(str(show.theater.located_city.id) == str(city_id)):
+
+            if(show.movie_shown not in movies):
+                movies.append(show.movie_shown)
+
+    print("movies = ", movies)
+
+    return render(request, 'bookings/webpages/Customer/Cust_Select_Movie.html', {"movies": movies})
 
 
 def Cust_Select_Theater(request):

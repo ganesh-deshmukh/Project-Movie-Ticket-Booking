@@ -1,1 +1,53 @@
-Cust_Select_Movie
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container border border-warning mt-5">
+    <div class="my-3 ">
+        <h3 class="">Available Movies</h3>
+    </div>
+
+    <div class="input-group rounded my-3">
+        <form class="form-inline" action="" method="GET">
+            <input type="search" class="form-control rounded" placeholder="Search" name="movie_name" />
+            <button type="submit" class="btn btn-primary mx-3">Submit</button>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> ID</th>
+                <th scope="col"> Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Language Avail</th>
+                <th scope="col">Select</th>
+                <th scope="col">Select</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+
+            <tr>
+                <th scope="row">{{movie.id}}</th>
+                <td>{{movie.name}}</td>
+                <td>{{movie.markup_price}}</td>
+                <td>{{movie.duration_in_min}}</td>
+                <td>{{movie.genre}}</td>
+                <td>{{movie.release_date}}</td>
+                <td>{{movie.genre}}</td>
+                <td>{{movie.language_avail}}</td>
+                <td><a href="{% url 'select_theater' %}" class="btn btn-success">Select</a></td>
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
