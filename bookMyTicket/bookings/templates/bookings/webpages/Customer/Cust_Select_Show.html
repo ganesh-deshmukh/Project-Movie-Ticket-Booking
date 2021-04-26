@@ -1,1 +1,37 @@
-Cust_Select_Show
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container border border-warning mt-5">
+    <div class="my-3 ">
+        <h3 class="">Available Shows</h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> ID</th>
+                <th scope="col"> Name</th>
+                <th scope="col">Theater</th>
+                <th scope="col">Movie</th>
+                <th scope="col">Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for show in shows %}
+
+            <tr>
+                <th scope="row">{{show.id}}</th>
+                <td>{{show.name}}</td>
+                <td>{{show.theater.name}}</td>
+                <td>{{show.movie_shown.name}}</td>
+                <td><a href="{% url 'select_seat' show.id %}" class="btn btn-success">Select</a></td>
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

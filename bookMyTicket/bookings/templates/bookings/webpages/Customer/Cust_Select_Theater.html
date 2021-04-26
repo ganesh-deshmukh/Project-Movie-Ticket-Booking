@@ -29,7 +29,7 @@
                 <td>{{theater.located_city}}</td>
                 <td>{{theater.seats_count}}</td>
                 <td>{{theater.service_charges}}</td>
-                <td><a href="{% url 'select_show' %}" class="btn btn-success">Select</a></td>
+                <td><a href="{% url 'select_show' theater.id movie_id %}" class="btn btn-success">Select</a></td>
 
             </tr>
 
