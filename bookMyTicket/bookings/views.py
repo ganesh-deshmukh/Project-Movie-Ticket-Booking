@@ -62,6 +62,7 @@ def Cust_Home_Book_Now(request):
 
  # for filtering
 
+
 def Cust_Select_City(request):
     city_name = request.GET.get('city_name')
     if city_name:
@@ -74,21 +75,18 @@ def Cust_Select_City(request):
 
 
 def Cust_Select_Movie(request, city_id):
+    movie_name = request.GET.get('movie_name') or ''
+    print("movie_name = ", movie_name)
     movies = []
-    # theaters = Theater.objects.filter(located_city=city_id)
-
     shows = Shows.objects.all()
 
     for show in shows:
-        print("city_id = ", city_id)
-        print("show.theater.located_city.id = ",
-              str(show.theater.located_city.id))
-        if(str(show.theater.located_city.id) == str(city_id)):
-
-            if(show.movie_shown not in movies):
+        if(str(show.theater.located_city.id) == str(city_id) and (show.movie_shown not in movies)):
+            if movie_name:
+                if (movie_name.lower() in show.movie_shown.name.lower()):
+                    movies.append(show.movie_shown)
+            else:
                 movies.append(show.movie_shown)
-
-    print("movies = ", movies)
 
     return render(request, 'bookings/webpages/Customer/Cust_Select_Movie.html', {"movies": movies})
 
