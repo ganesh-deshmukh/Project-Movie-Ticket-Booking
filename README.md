@@ -51,10 +51,8 @@
 ## Please See the working Demo(wait till GIF Loads completely)
 
 
-![Demo-in-GIF](https://github.com/ganesh-deshmukh/Project-Movie-Ticket-Booking/blob/main/Meta-Data-for-MarkDown/Demo-Python-Project-in-Django3.gif)
 
-
-![Video-Link](https://github.com/ganesh-deshmukh/Project-Movie-Ticket-Booking/blob/main/Meta-Data-for-MarkDown/Slower-Speed-Demo.gif)
+![Demo](https://github.com/ganesh-deshmukh/Project-Movie-Ticket-Booking/blob/main/Meta-Data-for-MarkDown/Slower-Speed-Demo.gif)
 
 
 Slower-Speed-Demo.gif
