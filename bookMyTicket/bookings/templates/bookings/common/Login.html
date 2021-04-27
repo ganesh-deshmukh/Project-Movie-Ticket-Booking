@@ -17,6 +17,15 @@
                         <td>Password: </td>
                         <td><input type="password" name="password" placeholder="Password..." class="form-control"> </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                            {% for message in messages %}
+                            <p class="bg-warning" id="message">{{message}}</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
                             <input type="submit" class="btn btn-success" name="Submit" value="Login into Account">

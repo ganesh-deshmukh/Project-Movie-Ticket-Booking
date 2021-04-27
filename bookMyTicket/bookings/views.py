@@ -36,16 +36,17 @@ def LoginPage(request):
 def RegisterPage(request):
     if(request.user.is_authenticated):
         return redirect('home')
+   
     form = CreateUserForm()
 
     if(request.method == 'POST'):
             
-
+        form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
+            user = form.save()
+            username = form.cleaned_data.get('username')
 
-            messages.success(request, 'Successfully created account for ' + user)
+            messages.success(request, 'Successfully created account for ' + username)
             return redirect('/login')
         else:
             messages.success(request, 'Can\'t create account for User.  ')
