@@ -4,19 +4,28 @@ from django.http import HttpResponse
 from .models import *
 from .formModels import *
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+
 
 # Authentication routes
 def Login(request):
     return render(request, 'bookings/common/Login.html')
 
 def Register(request):
-    form = UserCreationForm()
+    form = CreateUserForm()
 
     if(request.method == 'POST'):
-        form = UserCreationForm(request.POST)
-        if(form.is_valid()):
+        form = CreateUserForm(request.POST)
+
+        if form.is_valid():
             form.save()
-            
+            user = form.cleaned_data.get('username')
+
+            messages.success(request, 'Successfully created account for ' + user)
+            return redirect('/login')
+        else:
+            messages.success(request, 'Can\'t create account for new user')
+
     context = {'form': form}
 
     return render(request, 'bookings/common/Register.html', context)
