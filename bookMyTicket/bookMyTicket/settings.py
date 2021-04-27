@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s7yr@n-v%879y!*i3fbul4&2+nw0#-^ws(bna^lv-!1a5-ono@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True  # For Development only
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['book-my-shows.herokuapp.com', '127.0.0.1:8000']
 
 
 # Application definition
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'bookings',
 ]
 
@@ -76,12 +77,48 @@ WSGI_APPLICATION = 'bookMyTicket.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+'''
+# For SQLite
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+'''
+
+'''
+# For Posgres
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'book_ticket',
+        'USER': 'serveradmin',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
+'''
+
+# for Heroku Posgres
+# DATABASE_URL : postgres://sbobuffjgoaskl:e4212d88b6422ff487978830b80683dc2c5ee6fc927e4f88bf6a5d024a0e5137@ec2-52-50-171-4.eu-west-1.compute.amazonaws.com:5432/d5kd7ivauqiq7f
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'book_ticket',
+        'USER': 'serveradmin',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation

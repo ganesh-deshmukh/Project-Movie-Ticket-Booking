@@ -1,0 +1,1 @@
+web gunicorn bookMyTicket/wsgi --log-file -
