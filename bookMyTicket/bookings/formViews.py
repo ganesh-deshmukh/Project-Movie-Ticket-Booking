@@ -162,11 +162,16 @@ def Delete_Shows_Form(request, shows_id):
 
 
 def Create_Seats_Form(request, show_id):
+    show_rec = Shows.objects.get(id=show_id)
+
     form = Seats_Form()
     if request.method == 'POST':
         form = Seats_Form(request.POST)
         if(form.is_valid):
-            form.save()
+            new_form = form.save(commit=False)
+            new_form.shows = show_rec
+            new_form.save()
+
         return redirect('/theater_admin/list/seats/'+ show_id)
     return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'form': form})
 
@@ -179,7 +184,10 @@ def Update_Seats_Form(request, seats_id):
     if request.method == 'POST' and seats_rec:
         form = Seats_Form(request.POST, instance=seats_rec)
         if(form.is_valid):
-            form.save()
+            new_form = form.save(commit=False)
+            new_form.shows = seats_rec.shows
+            new_form.save()
+
             return redirect('/theater_admin/list/seats/' + str(show_id))
     return render(request, 'bookings/ModelForms/Create_Seats_Form.html', {'form': form})
 
