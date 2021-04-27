@@ -1,9 +1,0 @@
-Required classes: 
-1. Cities
-2. Movies
-3. Theaters- Balaji, Imax, INox, Carnival.
-4. Screens - floor 1,2,3
-5. Shows- Morning, AfterNoon, Evening, Night.
-6. Seats- 10 (To show functionality of HouseFul)
-7. Booking Process.
-8. Email Id Sending.s
