@@ -53,13 +53,20 @@
         </div>
     </nav>
 
+
+
     {% block content %}
 
     {% endblock %}
-        
-    <div class="text-center text-light footer fixed-bottom bg-dark">
 
+    <div class="text-center text-light footer fixed-bottom bg-dark">
+        {% for group in request.user.groups.all %}
+        {% if group.name == 'admin' %}
+        <h1 class="text-center">Admin User has Logged in.</h1>
+        {% else %}
         <h4 class="mx-auto">The whole of life is just like watching a film.....</h4>
+        {% endif %}
+        {% endfor %}
 
     </div>
 

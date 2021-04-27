@@ -20,6 +20,10 @@ min-height:100%;
     display: grid;
 }
 
+.admin_blue_bgrd{
+    background-color: #B3E5FC;
+}
+
 .grid-container--fill {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }
