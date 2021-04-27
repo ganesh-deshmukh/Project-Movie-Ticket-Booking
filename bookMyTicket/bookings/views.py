@@ -12,9 +12,11 @@ from django.contrib.auth.models import Group
 from .decorators import *
 
 # Authentication routes
+
+
 def LoginPage(request):
     if(request.user.is_authenticated):
-            return redirect('home')
+        return redirect('home')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -23,30 +25,43 @@ def LoginPage(request):
         # TODO Debug: why this authenticate doesn't work but other check password works?
         # user = authenticate(request, email=username, password=password)
         # if user:
-            # login(request, password)
-            # redirect('home')
+        # login(request, password)
+        # redirect('home')
+        try:
+            user = User.objects.get(email=username)
+        except:
+            user = User.objects.get(username=username)
 
-        user = User.objects.get(email=username)
-        if (check_password(password, user.password) and user.is_active):
+        if user and (check_password(password, user.password) and user.is_active):
             login(request, user)
             return redirect('home')
-    
+
     return render(request, 'bookings/common/Login.html', context={})
+
 
 def RegisterPage(request):
     if(request.user.is_authenticated):
         return redirect('home')
-   
+
     form = CreateUserForm()
 
     if(request.method == 'POST'):
-            
+
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
 
-            messages.success(request, 'Successfully created account for ' + username)
+            group = Group.objects.get(name='customer')
+            user.groups.add(group)
+            Customer.objects.create(
+                user=user,
+                name=user.username,
+                email=user.email
+            )
+
+            messages.success(
+                request, 'Successfully created account for ' + username)
             return redirect('/login')
         else:
             messages.success(request, 'Can\'t create account for User.  ')
@@ -55,12 +70,15 @@ def RegisterPage(request):
 
     return render(request, 'bookings/common/Register.html', context)
 
+
 @login_required(login_url='login')
 def LogoutPage(request):
     logout(request)
     return redirect('/login')
 
 # Admin Views
+
+
 @login_required(login_url='login')
 @admin_only
 def Admin_Home(request):
@@ -131,6 +149,7 @@ def Cust_Home_Book_Now(request):
     return render(request, 'bookings/webpages/Customer/Cust_Home_Book_Now.html')
 
  # for filtering
+
 
 @login_required(login_url='login')
 def Cust_Select_City(request):
@@ -220,33 +239,35 @@ def Cust_Booking_Payment(request, seat_id):
     if(request.method == 'GET'):
         return render(request, 'bookings/webpages/Customer/Cust_Booking_Payment.html', {'seat': seat_rec})
     elif request.user.is_authenticated:
-        print("authenticated")
-        seat_vals = {
-            'booking_status': 'BOOKED',
-            'booked_by_cust': request.user.id or ''
-        }
-        seat_rec.booking_status = 'BOOKED'
-        seat_rec.booked_by_cust = request.user.id
-        seat_rec.save()
 
-        movie_price = seat_rec.shows.movie_shown.markup_price
-        th_serv_cost = seat_rec.shows.theater.service_charges or 0
+        # server-side validatation whether seat is booked or not
+        if (seat_rec.booking_status != 'BOOKED'):
 
-        print("****************** request.user.customer.id = ", request.user.customer.id)
-        booking_vals = {
-            'id': None,
-            'name': 'Booking via Website',
-            'amount_paid': movie_price + th_serv_cost,
-            'on_date': datetime.now(),
-            'by_customer': request.user.id,
-            'booked_show': seat_rec.shows.id
-        }
+            # Update Seat's status as Booked, so that seat would show color of Red/Booked for other customers.
+            user_id_fk = request.user.id
+            customer = Customer.objects.get(user_id=user_id_fk)
 
-        # booking_rec = Booking.objects.filter().last()
-        # booking_rec.id.update(booking_vals)
-        # booking_rec.save()
+            seat_rec.booking_status = 'BOOKED'
+            seat_rec.booked_by_cust = customer
+            seat_rec.save(update_fields=['booking_status','booked_by_cust'])
 
-    return redirect('/')
+            movie_price = seat_rec.shows.movie_shown.markup_price
+            th_serv_cost = seat_rec.shows.theater.service_charges or 0
+
+            booking_name = customer.name + " Booked " + seat_rec.shows.movie_shown.name
+
+            # Create Boking, with required vals
+            new_book_id = Booking.objects.create(
+                name=booking_name,
+                amount_paid=movie_price + th_serv_cost,
+                on_date=datetime.now(),
+                by_customer=customer,
+                booked_show=seat_rec.shows
+            )
+            messages.success(request, 'Booking has created successfully  ')
+        else: 
+            messages.error(request, 'Can\'t create Booking for this Seat.  ')
+        return redirect('select_payment', seat_id=str(seat_id))
 
 # Common Views
 
@@ -257,4 +278,3 @@ def About_Us(request):
 
 def Contact_Us(request):
     return render(request, 'bookings/common/Contact_Us.html')
-

@@ -88,8 +88,8 @@ class Booking(models.Model):
     name = models.CharField(max_length=24, null=True)
     amount_paid = models.IntegerField(null=True)
     on_date = models.CharField(max_length=24, null=True)
-    by_customer = models.OneToOneField(Customer, null=True, on_delete=models.SET_NULL)
-    booked_show = models.OneToOneField(Shows, null=True, on_delete=models.SET_NULL)
+    by_customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    booked_show = models.ForeignKey(Shows, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name or str(self.id)

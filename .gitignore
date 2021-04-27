@@ -5,3 +5,4 @@
 bookMyTicket/bookMyTicket/__pycache__/*
 *.pyc
 bookMyTicket/db.sqlite3
+.vscode/launch.json

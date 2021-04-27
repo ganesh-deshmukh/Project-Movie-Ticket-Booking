@@ -63,7 +63,14 @@
         {{form.as_p}}
 
         <br>
-        <input class="btn btn-success mb-2" type="submit" name="Submit">
+        <tr>
+            <td>
+                {% for message in messages %}
+                <p class="bg-warning" id="message">{{message}}</p>
+                {% endfor %}
+            </td>
+        </tr>
+        <input class="btn btn-success mb-2" type="submit" value="Pay Now">
     </form>
 </div>
 
