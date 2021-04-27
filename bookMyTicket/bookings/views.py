@@ -12,7 +12,9 @@ from django.contrib.auth.decorators import login_required
 
 # Authentication routes
 def LoginPage(request):
-
+    if(request.user.is_authenticated):
+            return redirect('home')
+            
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -31,6 +33,8 @@ def LoginPage(request):
     return render(request, 'bookings/common/Login.html', context={})
 
 def RegisterPage(request):
+    if(request.user.is_authenticated):
+        return redirect('home')
     form = CreateUserForm()
 
     if(request.method == 'POST'):
