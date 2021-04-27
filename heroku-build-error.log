@@ -1,0 +1,92 @@
+-----> Building on the Heroku-20 stack
+-----> Using buildpack: heroku/python
+-----> Python app detected
+-----> Using Python version specified in runtime.txt
+-----> Installing python-3.9.4
+-----> Installing pip 20.2.4, setuptools 47.1.1 and wheel 0.36.2
+-----> Installing SQLite3
+-----> Installing requirements with pip
+       Collecting asgiref==3.3.4
+         Downloading asgiref-3.3.4-py3-none-any.whl (22 kB)
+       Collecting django-filter==2.4.0
+         Downloading django_filter-2.4.0-py3-none-any.whl (73 kB)
+       Collecting Django==3.2
+         Downloading Django-3.2-py3-none-any.whl (7.9 MB)
+       Collecting docutils==0.12
+         Downloading docutils-0.12-py3-none-any.whl (508 kB)
+       Collecting gunicorn==19.9.0
+         Downloading gunicorn-19.9.0-py2.py3-none-any.whl (112 kB)
+       Collecting python-dateutil==2.5.3
+         Downloading python_dateutil-2.5.3-py2.py3-none-any.whl (201 kB)
+       Collecting pytz==2016.7
+         Downloading pytz-2016.7-py2.py3-none-any.whl (480 kB)
+       Collecting six==1.12.0
+         Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+       Collecting urllib3==1.25.9
+         Downloading urllib3-1.25.9-py2.py3-none-any.whl (126 kB)
+       Collecting dj-database-url==0.5.0
+         Downloading dj_database_url-0.5.0-py2.py3-none-any.whl (5.5 kB)
+       Collecting sqlparse>=0.2.2
+         Downloading sqlparse-0.4.1-py3-none-any.whl (42 kB)
+       Installing collected packages: asgiref, pytz, sqlparse, Django, django-filter, docutils, gunicorn, six, python-dateutil, urllib3, dj-database-url
+       Successfully installed Django-3.2 asgiref-3.3.4 dj-database-url-0.5.0 django-filter-2.4.0 docutils-0.12 gunicorn-19.9.0 python-dateutil-2.5.3 pytz-2016.7 six-1.12.0 sqlparse-0.4.1 urllib3-1.25.9
+-----> $ python bookMyTicket/manage.py collectstatic --noinput
+       Traceback (most recent call last):
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/db/backends/postgresql/base.py", line 25, in <module>
+           import psycopg2 as Database
+       ModuleNotFoundError: No module named 'psycopg2'
+       During handling of the above exception, another exception occurred:
+       Traceback (most recent call last):
+         File "/tmp/build_e7242a5d/bookMyTicket/manage.py", line 22, in <module>
+           main()
+         File "/tmp/build_e7242a5d/bookMyTicket/manage.py", line 18, in main
+           execute_from_command_line(sys.argv)
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/core/management/__init__.py", line 419, in execute_from_command_line
+           utility.execute()
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/core/management/__init__.py", line 395, in execute
+           django.setup()
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/__init__.py", line 24, in setup
+           apps.populate(settings.INSTALLED_APPS)
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/apps/registry.py", line 114, in populate
+           app_config.import_models()
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/apps/config.py", line 301, in import_models
+           self.models_module = import_module(models_module_name)
+         File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+           return _bootstrap._gcd_import(name[level:], package, level)
+         File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+         File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+         File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+         File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+         File "<frozen importlib._bootstrap_external>", line 790, in exec_module
+         File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/contrib/auth/models.py", line 3, in <module>
+           from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/contrib/auth/base_user.py", line 48, in <module>
+           class AbstractBaseUser(models.Model):
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/db/models/base.py", line 122, in __new__
+           new_class.add_to_class('_meta', Options(meta, app_label))
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/db/models/base.py", line 326, in add_to_class
+           value.contribute_to_class(cls, name)
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/db/models/options.py", line 207, in contribute_to_class
+           self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/utils/connection.py", line 15, in __getattr__
+           return getattr(self._connections[self._alias], item)
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/utils/connection.py", line 62, in __getitem__
+           conn = self.create_connection(alias)
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/db/utils.py", line 204, in create_connection
+           backend = load_backend(db['ENGINE'])
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/db/utils.py", line 111, in load_backend
+           return import_module('%s.base' % backend_name)
+         File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+           return _bootstrap._gcd_import(name[level:], package, level)
+         File "/app/.heroku/python/lib/python3.9/site-packages/django/db/backends/postgresql/base.py", line 29, in <module>
+           raise ImproperlyConfigured("Error loading psycopg2 module: %s" % e)
+       django.core.exceptions.ImproperlyConfigured: Error loading psycopg2 module: No module named 'psycopg2'
+ !     Error while running '$ python bookMyTicket/manage.py collectstatic --noinput'.
+       See traceback above for details.
+       You may need to update application code to resolve this error.
+       Or, you can disable collectstatic for this application:
+          $ heroku config:set DISABLE_COLLECTSTATIC=1
+       https://devcenter.heroku.com/articles/django-assets
+ !     Push rejected, failed to compile Python app.
+ !     Push failed
