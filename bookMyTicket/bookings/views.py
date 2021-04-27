@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth.decorators import login_required
 
 
 # Authentication routes
@@ -48,6 +49,10 @@ def RegisterPage(request):
 
     return render(request, 'bookings/common/Register.html', context)
 
+@login_required(login_url='login')
+def LogoutPage(request):
+    logout(request)
+    return redirect('/login')
 
 # Admin Views
 
@@ -102,13 +107,13 @@ def Admin_Seat_Details(request, seat_id):
 
 
 # Customer Views
-
+@login_required(login_url='login')
 def Cust_Home_Book_Now(request):
     return render(request, 'bookings/webpages/Customer/Cust_Home_Book_Now.html')
 
  # for filtering
 
-
+@login_required(login_url='login')
 def Cust_Select_City(request):
     city_name = request.GET.get('city_name')
     if city_name:
@@ -120,6 +125,7 @@ def Cust_Select_City(request):
     return render(request, 'bookings/webpages/Customer/Cust_Select_City.html', {'cities': cities})
 
 
+@login_required(login_url='login')
 def Cust_Select_Movie(request, city_id):
     movie_name = request.GET.get('movie_name') or ''
     movies = []
@@ -140,6 +146,7 @@ def Cust_Select_Movie(request, city_id):
     return render(request, 'bookings/webpages/Customer/Cust_Select_Movie.html', context)
 
 
+@login_required(login_url='login')
 def Cust_Select_Theater(request, city_id, movie_id):
 
     theaters = []
@@ -159,6 +166,7 @@ def Cust_Select_Theater(request, city_id, movie_id):
     return render(request, 'bookings/webpages/Customer/Cust_Select_Theater.html', context)
 
 
+@login_required(login_url='login')
 def Cust_Select_Show(request, theater_id, movie_id):
     shows = []
     for show in Shows.objects.all():
@@ -167,6 +175,7 @@ def Cust_Select_Show(request, theater_id, movie_id):
     return render(request, 'bookings/webpages/Customer/Cust_Select_Show.html', {'shows': shows})
 
 
+@login_required(login_url='login')
 def Cust_Select_Seat(request, show_id):
     seats = Seats.objects.filter(shows=show_id)
     show = Shows.objects.get(id=show_id)
@@ -185,6 +194,7 @@ def Cust_Select_Seat(request, show_id):
     return render(request, 'bookings/webpages/Customer/Cust_Select_Seat.html', context)
 
 
+@login_required(login_url='login')
 def Cust_Booking_Payment(request, seat_id):
     seat_rec = Seats.objects.get(id=seat_id)
 

@@ -59,7 +59,8 @@ urlpatterns = [
 
     # 4. Auth Routes
 
-    path('login', views.LoginPage),
-    path('register', views.RegisterPage)
+    path('login', views.LoginPage, name='login'),
+    path('logout', views.LogoutPage, name='logout'),
+    path('register', views.RegisterPage, name='register')
 
 ]
