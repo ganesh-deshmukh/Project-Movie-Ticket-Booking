@@ -2,6 +2,9 @@
 
 #### This is Mini-version of Book-My-Shows...
 
+## This Demo is in Fast speed, check at bottom for slowed-down speed demo Gif.
+
+![Demo-in-GIF](https://github.com/ganesh-deshmukh/Project-Movie-Ticket-Booking/blob/main/Meta-Data-for-MarkDown/Demo-Python-Project-in-Django3.gif)
 
 1. Project has Two main menus.
     
@@ -47,7 +50,11 @@
 
 ## Please See the working Demo(wait till GIF Loads completely)
 
-![Demo-Of-Project](https://github.com/ganesh-deshmukh/Project-Movie-Ticket-Booking/blob/main/Meta-Data-for-MarkDown/Faster-Movie-Booking-Project-4X-Speed.mp4)
-
 
 ![Demo-in-GIF](https://github.com/ganesh-deshmukh/Project-Movie-Ticket-Booking/blob/main/Meta-Data-for-MarkDown/Demo-Python-Project-in-Django3.gif)
+
+
+![Video-Link](https://github.com/ganesh-deshmukh/Project-Movie-Ticket-Booking/blob/main/Meta-Data-for-MarkDown/Slower-Speed-Demo.gif)
+
+
+Slower-Speed-Demo.gif
