@@ -1,0 +1,24 @@
+
+
+
+1. From User's view
+
+2. Register then Login
+
+3. Select City
+
+Check suggested cities, based on typed characters
+
+4. Select Movie
+
+Check suggested cities, based on typed characters
+
+5. Select Theater
+
+6. Select Show
+
+7. Select Available Seat
+
+8. Pay
+
+

@@ -27,10 +27,8 @@ def LoginPage(request):
         # if user:
         # login(request, password)
         # redirect('home')
-        try:
-            user = User.objects.get(email=username)
-        except:
-            user = User.objects.get(username=username)
+        user = User.objects.get(email=username)
+            # user = User.objects.get(username=username)
 
         if user and (check_password(password, user.password) and user.is_active):
             login(request, user)
