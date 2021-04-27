@@ -92,7 +92,7 @@ class Booking(models.Model):
     booked_show = models.OneToOneField(Shows, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return self.name
+        return self.name or str(self.id)
 
 
  

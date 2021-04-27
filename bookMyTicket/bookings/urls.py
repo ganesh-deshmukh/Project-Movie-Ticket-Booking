@@ -57,4 +57,9 @@ urlpatterns = [
     path('about_us', views.About_Us),
     path('contact_us', views.Contact_Us),
 
+    # 4. Auth Routes
+
+    path('login', views.Login),
+    path('register', views.Register)
+
 ]

@@ -1,7 +1,25 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .formModels import *
+from django.contrib.auth.forms import UserCreationForm
+
+# Authentication routes
+def Login(request):
+    return render(request, 'bookings/common/Login.html')
+
+def Register(request):
+    form = UserCreationForm()
+
+    if(request.method == 'POST'):
+        form = UserCreationForm(request.POST)
+        if(form.is_valid()):
+            form.save()
+            
+    context = {'form': form}
+
+    return render(request, 'bookings/common/Register.html', context)
 
 
 # Admin Views
@@ -141,14 +159,41 @@ def Cust_Select_Seat(request, show_id):
 
 
 def Cust_Booking_Payment(request, seat_id):
+    seat_rec = Seats.objects.get(id=seat_id)
+
     if(request.method == 'GET'):
-        seat = Seats.objects.get(id=seat_id)
-        return render(request, 'bookings/webpages/Customer/Cust_Booking_Payment.html', {'seat': seat})
-    else:
-        print("Create Booking in DB.")
-        return redirect('/')
+        return render(request, 'bookings/webpages/Customer/Cust_Booking_Payment.html', {'seat': seat_rec})
+    elif request.user.is_authenticated:
+        print("authenticated")
+        seat_vals = {
+            'booking_status': 'BOOKED',
+            'booked_by_cust': request.user.id or ''
+        }
+        seat_rec.booking_status = 'BOOKED'
+        seat_rec.booked_by_cust = request.user.id
+        seat_rec.save()
+
+        movie_price = seat_rec.shows.movie_shown.markup_price
+        th_serv_cost = seat_rec.shows.theater.service_charges or 0
+
+        print("****************** request.user.customer.id = ", request.user.customer.id)
+        booking_vals = {
+            'id': None,
+            'name': 'Booking via Website',
+            'amount_paid': movie_price + th_serv_cost,
+            'on_date': datetime.now(),
+            'by_customer': request.user.id,
+            'booked_show': seat_rec.shows.id
+        }
+
+        # booking_rec = Booking.objects.filter().last()
+        # booking_rec.id.update(booking_vals)
+        # booking_rec.save()
+
+    return redirect('/')
 
 # Common Views
+
 
 def About_Us(request):
     return render(request, 'bookings/common/About_Us.html')
@@ -156,3 +201,4 @@ def About_Us(request):
 
 def Contact_Us(request):
     return render(request, 'bookings/common/Contact_Us.html')
+
