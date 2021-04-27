@@ -8,13 +8,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import Group
+from .decorators import *
 
 # Authentication routes
 def LoginPage(request):
     if(request.user.is_authenticated):
             return redirect('home')
-            
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -59,26 +60,35 @@ def LogoutPage(request):
     return redirect('/login')
 
 # Admin Views
-
+@login_required(login_url='login')
+@admin_only
 def Admin_Home(request):
     return render(request, 'bookings/webpages/Admin/Admin_Home.html')
 
 
+@login_required(login_url='login')
+@admin_only
 def Admin_List_City(request):
     cities = City.objects.all()
     return render(request, 'bookings/webpages/Admin/Admin_List_City.html', {'cities': cities})
 
 
+@login_required(login_url='login')
+@admin_only
 def Admin_List_Movie(request):
     movies = Movie.objects.all()
     return render(request, 'bookings/webpages/Admin/Admin_List_Movie.html', {'movies': movies})
 
 
+@login_required(login_url='login')
+@admin_only
 def Admin_List_Theater(request):
     theaters = Theater.objects.all()
     return render(request, 'bookings/webpages/Admin/Admin_List_Theater.html', {'theaters': theaters})
 
 
+@login_required(login_url='login')
+@admin_only
 def Admin_List_Shows(request, theater_id):
 
     shows_in_given_theater = Shows.objects.filter(theater=theater_id)
@@ -92,6 +102,8 @@ def Admin_List_Shows(request, theater_id):
     return render(request, 'bookings/webpages/Admin/Admin_List_Shows.html', context)
 
 
+@login_required(login_url='login')
+@admin_only
 def Admin_List_Seats(request, show_id):
     seats_in_given_show = Seats.objects.filter(shows=show_id)
     show = Shows.objects.get(id=show_id)
@@ -104,6 +116,8 @@ def Admin_List_Seats(request, show_id):
     return render(request, 'bookings/webpages/Admin/Admin_List_Seats.html', {'seat_vals': seat_vals})
 
 
+@login_required(login_url='login')
+@admin_only
 def Admin_Seat_Details(request, seat_id):
     seat = Seats.objects.get(id=seat_id)
 
