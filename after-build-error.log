@@ -1,0 +1,102 @@
+
+serveradmin@TR-LAP-032:~/Desktop/movie-book$ heroku logs --tail
+2021-04-27T20:01:17.000000+00:00 app[api]: Build started by user gads1612@gmail.com
+2021-04-27T20:02:09.864077+00:00 app[api]: Release v5 created by user gads1612@gmail.com
+2021-04-27T20:02:09.864077+00:00 app[api]: Deploy 9043dc15 by user gads1612@gmail.com
+2021-04-27T20:02:09.884207+00:00 app[api]: Scaled to web@1:Free by user gads1612@gmail.com
+2021-04-27T20:02:19.000000+00:00 app[api]: Build succeeded
+2021-04-27T20:02:20.369083+00:00 heroku[web.1]: Starting process with command `gunicorn bookMyTicket/wsgi --log-file -`
+2021-04-27T20:02:24.357419+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [4] [INFO] Starting gunicorn 19.9.0
+2021-04-27T20:02:24.358431+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [4] [INFO] Listening at: http://0.0.0.0:36366 (4)
+2021-04-27T20:02:24.358601+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [4] [INFO] Using worker: sync
+2021-04-27T20:02:24.381460+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [9] [INFO] Booting worker with pid: 9
+2021-04-27T20:02:24.404452+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [10] [INFO] Booting worker with pid: 10
+2021-04-27T20:02:24.406983+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [9] [ERROR] Exception in worker process
+2021-04-27T20:02:24.406984+00:00 app[web.1]: Traceback (most recent call last):
+2021-04-27T20:02:24.407005+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+2021-04-27T20:02:24.407006+00:00 app[web.1]: worker.init_process()
+2021-04-27T20:02:24.407007+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 129, in init_process
+2021-04-27T20:02:24.407007+00:00 app[web.1]: self.load_wsgi()
+2021-04-27T20:02:24.407007+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 138, in load_wsgi
+2021-04-27T20:02:24.407008+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2021-04-27T20:02:24.407008+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2021-04-27T20:02:24.407009+00:00 app[web.1]: self.callable = self.load()
+2021-04-27T20:02:24.407009+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load
+2021-04-27T20:02:24.407009+00:00 app[web.1]: return self.load_wsgiapp()
+2021-04-27T20:02:24.407009+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 41, in load_wsgiapp
+2021-04-27T20:02:24.407010+00:00 app[web.1]: return util.import_app(self.app_uri)
+2021-04-27T20:02:24.407010+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/util.py", line 350, in import_app
+2021-04-27T20:02:24.407011+00:00 app[web.1]: __import__(module)
+2021-04-27T20:02:24.407130+00:00 app[web.1]: ModuleNotFoundError: No module named 'bookMyTicket/wsgi'
+2021-04-27T20:02:24.407504+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [9] [INFO] Worker exiting (pid: 9)
+2021-04-27T20:02:24.421355+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [10] [ERROR] Exception in worker process
+2021-04-27T20:02:24.421357+00:00 app[web.1]: Traceback (most recent call last):
+2021-04-27T20:02:24.421358+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+2021-04-27T20:02:24.421358+00:00 app[web.1]: worker.init_process()
+2021-04-27T20:02:24.421359+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 129, in init_process
+2021-04-27T20:02:24.421359+00:00 app[web.1]: self.load_wsgi()
+2021-04-27T20:02:24.421360+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 138, in load_wsgi
+2021-04-27T20:02:24.421360+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2021-04-27T20:02:24.421361+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2021-04-27T20:02:24.421365+00:00 app[web.1]: self.callable = self.load()
+2021-04-27T20:02:24.421365+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load
+2021-04-27T20:02:24.421366+00:00 app[web.1]: return self.load_wsgiapp()
+2021-04-27T20:02:24.421366+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 41, in load_wsgiapp
+2021-04-27T20:02:24.421367+00:00 app[web.1]: return util.import_app(self.app_uri)
+2021-04-27T20:02:24.421367+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/util.py", line 350, in import_app
+2021-04-27T20:02:24.421367+00:00 app[web.1]: __import__(module)
+2021-04-27T20:02:24.423632+00:00 app[web.1]: ModuleNotFoundError: No module named 'bookMyTicket/wsgi'
+2021-04-27T20:02:24.424156+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [10] [INFO] Worker exiting (pid: 10)
+2021-04-27T20:02:24.624204+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [4] [INFO] Shutting down: Master
+2021-04-27T20:02:24.624501+00:00 app[web.1]: [2021-04-27 20:02:24 +0000] [4] [INFO] Reason: Worker failed to boot.
+2021-04-27T20:02:24.793486+00:00 heroku[web.1]: Process exited with status 3
+2021-04-27T20:02:24.958735+00:00 heroku[web.1]: State changed from starting to crashed
+2021-04-27T20:02:24.972841+00:00 heroku[web.1]: State changed from crashed to starting
+2021-04-27T20:02:32.592691+00:00 heroku[web.1]: Starting process with command `gunicorn bookMyTicket/wsgi --log-file -`
+2021-04-27T20:02:35.635867+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [4] [INFO] Starting gunicorn 19.9.0
+2021-04-27T20:02:35.636357+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [4] [INFO] Listening at: http://0.0.0.0:52717 (4)
+2021-04-27T20:02:35.636439+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [4] [INFO] Using worker: sync
+2021-04-27T20:02:35.640251+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [9] [INFO] Booting worker with pid: 9
+2021-04-27T20:02:35.644977+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [9] [ERROR] Exception in worker process
+2021-04-27T20:02:35.644995+00:00 app[web.1]: Traceback (most recent call last):
+2021-04-27T20:02:35.645001+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+2021-04-27T20:02:35.645006+00:00 app[web.1]: worker.init_process()
+2021-04-27T20:02:35.645006+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 129, in init_process
+2021-04-27T20:02:35.645007+00:00 app[web.1]: self.load_wsgi()
+2021-04-27T20:02:35.645007+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 138, in load_wsgi
+2021-04-27T20:02:35.645007+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2021-04-27T20:02:35.645012+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2021-04-27T20:02:35.645012+00:00 app[web.1]: self.callable = self.load()
+2021-04-27T20:02:35.645012+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load
+2021-04-27T20:02:35.645013+00:00 app[web.1]: return self.load_wsgiapp()
+2021-04-27T20:02:35.645013+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 41, in load_wsgiapp
+2021-04-27T20:02:35.645013+00:00 app[web.1]: return util.import_app(self.app_uri)
+2021-04-27T20:02:35.645014+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/util.py", line 350, in import_app
+2021-04-27T20:02:35.645014+00:00 app[web.1]: __import__(module)
+2021-04-27T20:02:35.645015+00:00 app[web.1]: ModuleNotFoundError: No module named 'bookMyTicket/wsgi'
+2021-04-27T20:02:35.645129+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [9] [INFO] Worker exiting (pid: 9)
+2021-04-27T20:02:35.645712+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [10] [INFO] Booting worker with pid: 10
+2021-04-27T20:02:35.652252+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [10] [ERROR] Exception in worker process
+2021-04-27T20:02:35.652254+00:00 app[web.1]: Traceback (most recent call last):
+2021-04-27T20:02:35.652255+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/arbiter.py", line 583, in spawn_worker
+2021-04-27T20:02:35.652255+00:00 app[web.1]: worker.init_process()
+2021-04-27T20:02:35.652256+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 129, in init_process
+2021-04-27T20:02:35.652256+00:00 app[web.1]: self.load_wsgi()
+2021-04-27T20:02:35.652256+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/workers/base.py", line 138, in load_wsgi
+2021-04-27T20:02:35.652257+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2021-04-27T20:02:35.652257+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2021-04-27T20:02:35.652257+00:00 app[web.1]: self.callable = self.load()
+2021-04-27T20:02:35.652258+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 52, in load
+2021-04-27T20:02:35.652258+00:00 app[web.1]: return self.load_wsgiapp()
+2021-04-27T20:02:35.652259+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 41, in load_wsgiapp
+2021-04-27T20:02:35.652259+00:00 app[web.1]: return util.import_app(self.app_uri)
+2021-04-27T20:02:35.652259+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/gunicorn/util.py", line 350, in import_app
+2021-04-27T20:02:35.652260+00:00 app[web.1]: __import__(module)
+2021-04-27T20:02:35.652260+00:00 app[web.1]: ModuleNotFoundError: No module named 'bookMyTicket/wsgi'
+2021-04-27T20:02:35.652408+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [10] [INFO] Worker exiting (pid: 10)
+2021-04-27T20:02:35.679500+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [4] [INFO] Shutting down: Master
+2021-04-27T20:02:35.679581+00:00 app[web.1]: [2021-04-27 20:02:35 +0000] [4] [INFO] Reason: Worker failed to boot.
+2021-04-27T20:02:35.738582+00:00 heroku[web.1]: Process exited with status 3
+2021-04-27T20:02:35.801655+00:00 heroku[web.1]: State changed from starting to crashed
+2021-04-27T20:03:19.571326+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=book-my-shows.herokuapp.com request_id=c228e80d-f908-484e-bcb4-413210f1711f fwd="49.33.196.37" dyno= connect= service= status=503 bytes= protocol=https
+2021-04-27T20:03:20.461033+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=book-my-shows.herokuapp.com request_id=13c5c423-3b46-42d7-877d-04e21b13ec69 fwd="49.33.196.37" dyno= connect= service= status=503 bytes= protocol=https
