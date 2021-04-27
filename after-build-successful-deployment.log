@@ -1,0 +1,18 @@
+-----> Building on the Heroku-20 stack
+-----> Using buildpack: heroku/python
+-----> Python app detected
+-----> Using Python version specified in runtime.txt
+-----> No change in requirements detected, installing from cache
+-----> Using cached install of python-3.6.13
+-----> Installing pip 20.2.4, setuptools 47.1.1 and wheel 0.36.2
+-----> Installing SQLite3
+-----> Installing requirements with pip
+-----> $ python bookMyTicket/manage.py collectstatic --noinput
+       131 static files copied to '/tmp/build_2be02a99/bookMyTicket/staticfiles'.
+-----> Discovering process types
+       Procfile declares types -> web
+-----> Compressing...
+       Done: 110.7M
+-----> Launching...
+       Released v6
+       https://book-my-shows.herokuapp.com/ deployed to Heroku
