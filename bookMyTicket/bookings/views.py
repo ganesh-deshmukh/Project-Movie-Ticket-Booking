@@ -26,8 +26,8 @@ def LoginPage(request):
         if (check_password(password, user.password) and user.is_active):
             login(request, user)
             return redirect('home')
-     
-    return render(request, 'bookings/common/Login.html')
+    
+    return render(request, 'bookings/common/Login.html', context={})
 
 def RegisterPage(request):
     form = CreateUserForm()
