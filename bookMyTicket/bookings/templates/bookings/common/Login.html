@@ -1,1 +1,35 @@
-Login page
+{% extends 'bookings/common/HeaderAndFooter.html' %}
+
+{% block content %}
+
+<div class="container ">
+    <div class="ml-5 mt-5 p-3 center border border-warning">
+        <form class="form " method="POST" action="">
+            {% csrf_token %}
+            <h1>User Login</h1>
+            <div class="w-50">
+                <table class="table">
+                    <tr>
+                        <td>Email: </td>
+                        <td><input type="text" name="username" placeholder="Username..." class="form-control"> </td>
+                    </tr>
+                    <tr>
+                        <td>Password: </td>
+                        <td><input type="password" name="password" placeholder="Password..." class="form-control"> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" class="btn btn-success" name="Submit" value="Login into Account">
+                        </td>
+                        <td>
+                            <a href="/register" class="btn btn-primary">New User, Signup Here</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

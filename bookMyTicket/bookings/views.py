@@ -5,17 +5,35 @@ from .models import *
 from .formModels import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password
 
 
 # Authentication routes
-def Login(request):
+def LoginPage(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # TODO Debug: why this authenticate doesn't work but other check password works?
+        # user = authenticate(request, email=username, password=password)
+        # if user:
+            # login(request, password)
+            # redirect('home')
+
+        user = User.objects.get(email=username)
+        if (check_password(password, user.password) and user.is_active):
+            login(request, user)
+            return redirect('home')
+     
     return render(request, 'bookings/common/Login.html')
 
-def Register(request):
+def RegisterPage(request):
     form = CreateUserForm()
 
     if(request.method == 'POST'):
-        form = CreateUserForm(request.POST)
+            
 
         if form.is_valid():
             form.save()
@@ -24,7 +42,7 @@ def Register(request):
             messages.success(request, 'Successfully created account for ' + user)
             return redirect('/login')
         else:
-            messages.success(request, 'Can\'t create account for new user')
+            messages.success(request, 'Can\'t create account for User.  ')
 
     context = {'form': form}
 

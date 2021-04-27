@@ -45,7 +45,7 @@ urlpatterns = [
 
 
     # 2. Customer Routes
-    path('', views.Cust_Home_Book_Now),
+    path('', views.Cust_Home_Book_Now, name='home'),
     path('customer/select/city', views.Cust_Select_City, name="select_city"),
     path('customer/select/movie/<city_id>/', views.Cust_Select_Movie, name="select_movie"),
     path('customer/select/theater/<city_id>/<movie_id>/', views.Cust_Select_Theater, name="select_theater"),
@@ -59,7 +59,7 @@ urlpatterns = [
 
     # 4. Auth Routes
 
-    path('login', views.Login),
-    path('register', views.Register)
+    path('login', views.LoginPage),
+    path('register', views.RegisterPage)
 
 ]
