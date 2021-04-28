@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-s7yr@n-v%879y!*i3fbul4&2+nw0#-^ws(bna^lv-!1a5-ono@
 # DEBUG = True  # For Development only
 DEBUG = False
 
-ALLOWED_HOSTS = ['book-my-shows.herokuapp.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['book-my-shows.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -112,16 +112,16 @@ DATABASES = {
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql",
-        'NAME': 'book_ticket',
-        'USER': 'serveradmin',
+        'NAME': '',
+        'USER': '',
         'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'HOST': '',
+        'PORT': ''
     }
 }
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -159,11 +159,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
-STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')

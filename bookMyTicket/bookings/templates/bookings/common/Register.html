@@ -6,7 +6,7 @@
     <div class="ml-5 mt-5 p-3 center border border-warning">
         <form class="form " method="POST" action="">
             {% csrf_token %}
-            <h1>New User Signup</h1>
+            <h1>User Signup</h1>
             <div class="w-50 ">
                 <table class="table">
 
@@ -48,7 +48,7 @@
 
     //Query All input fields
     var form_fields = document.getElementsByTagName('input')
-    form_fields[1].placeholder = 'Username..';
+    form_fields[1].placeholder = 'Please Don\'t Use Spaces';
     form_fields[2].placeholder = 'Email..';
     form_fields[3].placeholder = 'Enter password...';
     form_fields[4].placeholder = 'Re-enter Password...';
